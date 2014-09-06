@@ -24,7 +24,8 @@ class PP_After_Content_Widget extends WP_Widget {
 		$getant = 4 * $ant;
 		$src = 'admin';
 		$sites = pp_sites( $src );
-		krsort( $sites );
+//		krsort( $sites );
+		shuffle( $sites );
 		foreach ( $sites as $site_id => $site ) {
 			if ( PP_DOMAIN_SITE != $site_id && function_exists( 'stats_get_csv' ) ) {
 				$post->blog_id = get_current_blog_id(); // Signal til switch_blog action
