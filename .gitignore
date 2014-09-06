@@ -52,3 +52,15 @@ wp-content/uploads/
 wp-content/wp-cache-config.php
 wp-content/backups/
 wp-content/backup-db/
+logs/
+tmp/
+.cpanel/
+.cl.selector/
+.cagefs/
+mail/
+etc/
+.rvglobalsoft/
+.trash/
+.softaculous/
+public-ftp/
+.htpasswds/
