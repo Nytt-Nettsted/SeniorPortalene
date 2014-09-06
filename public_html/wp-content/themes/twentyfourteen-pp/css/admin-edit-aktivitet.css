@@ -1,0 +1,5 @@
+#visibility { display: none; }
+#pods-meta-more-fields .hndle span { display: none; }
+#pods-meta-more-fields .hndle:after { content: 'Øvrig aktivitetsinformasjon'; }
+#insert-jetpack-contact-form, #add_pod_button { display: none; }
+#fylke-adder { display: none; }

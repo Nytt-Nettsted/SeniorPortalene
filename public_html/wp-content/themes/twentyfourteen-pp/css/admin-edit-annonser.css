@@ -1,0 +1,11 @@
+/* Excerpt explaination */
+#visibility { display: none; }
+#postexcerpt .inside > p:last-child { display: none; }
+#postexcerpt h3 span { display: none; }
+#postexcerpt h3:after { content: 'Annonsekode fra byrå (html/script) eller ren tekst'; }
+#pods-meta-more-fields .hndle span { display: none; }
+#pods-meta-more-fields .hndle:after { content: 'Øvrig annonseinformasjon'; }
+#kommune-adder, #annonseleverandor-adder, #annonseplass-adder { display: none; }
+.row-actions .view, #titlediv .inside, #message.updated a, #preview-action { display: none; }
+.column-title { width: 45%; }
+.column-annonsesluttdato { width: 10%; }

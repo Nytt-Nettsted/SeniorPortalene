@@ -1,0 +1,6 @@
+.actions select[name='m'], .actions #post-query-submit, .view-switch { display: none; }
+.wp-list-table #hjemmesykepleie, .wp-list-table #praktisk_bistand, .wp-list-table #privat { width: 1.9em; }
+#visibility { display: none; }
+#pods-meta-more-fields .hndle span { display: none; }
+#pods-meta-more-fields .hndle:after { content: 'Øvrig leverandørinformasjon'; }
+#kommune-adder { display: none; }

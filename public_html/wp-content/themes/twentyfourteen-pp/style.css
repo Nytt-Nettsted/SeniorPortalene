@@ -1,0 +1,825 @@
+/*
+Theme Name: 	Twenty Fourteen for Seniorportalene
+Description:	Tilpasset WordPress Twenty Fourteen for SeniorPortalene / ErnæringsPortalen / SeniorBoPortalen / FrittBrukervalgPortalen / SeniorAktiviteter / SeniorKortet / BPA-Portalen / E-SeniorPortalen / SeniorØkonomi /
+Version:    	2.0
+Author:     	knutsp, isthoresen
+Author URI: 	http://nytt-nettsted.no/
+Template:   	twentyfourteen
+Tags:       	Nytt Nettsted
+*/
+
+@import url('../twentyfourteen/style.css');
+
+html { overflow-x: hidden; }
+body { overflow-x: hidden; }
+
+.socialbox { float: right; box-sizing: border-box; -moz-box-sizing: border-box; width: 48px; }
+.social { font: 25px Genericons;  padding-top: .5em; margin-bottom: 2px; display: block; width: 48px; height: 48px;color: #FFF; text-align: center; box-sizing: inherit; -moz-box-sizing: inherit; }
+.social:hover { color: inherit; }
+.social.facebook { background-color: rgb(59,89,152); }
+.social.facebook:before { content: '\F204'; }
+.social.epost { background-color: #FF0000; }
+.social.epost:before { content: '\F410'; }
+.social.rss { background-color: #FF9900; }
+.social.rss:before { content: '\F413'; }
+.entry-content, .entry-summary, .page-content { word-wrap: normal; word-break: keep-all !important; -moz-hyphens: manual; hyphens: manual; }
+
+.site-content { z-index: 3; }
+.site-content .prosjekt-image img { max-width: 100%; }
+.site-content .prosjekt-image { width: 300px; }
+
+body { padding-right: 243px; }	/* Sentrering forskyves litt til venstre. Oppheves på mindre skjerm som ikke trenger marger. Se nedenfor under @media */
+.site-info { color: black; }
+#page { margin: 10px auto 0 auto; }	/* Sentrerer */
+#site-header { padding-left: 20px; float: left; }
+.site-10 #site-header { padding-left: 0; }
+/*.site-1 #site-header { float: left; } Fjernet av Knut og lagt i HTML i header.php */
+.search-toggle:before, .search-toggle { color: #000; font-size: 25px; }
+.site-title { font-size: 150%; }
+
+@media screen and ( max-width: 420px ) {
+	.site-title { font-size: 133.3%; }
+}
+.site-description { font-size: 18px; margin: 10px 0px 9px; }
+* { word-break: keep-all; } /* Virker visst ikke i IE ? */
+* { -ms-word-break: keep-all; }
+
+.site-3 .primary-navigation ul ul li > a { color: #888888; }
+
+.site-8 .menu-bunnmeny-container ul li { float: right; padding: 10px 12px; }
+.site-8 .menu-bunnmeny-container ul li:first-child { float: right; padding: 10px 0 0 12px; }
+.site-8 .menu-bunnmeny-container ul li:last-child { float: right; padding: 10px 12px 0 0; }
+.site-8 .menu-bunnmeny-container ul li a { font-size: 14px; text-transform: uppercase; }
+.site-8 .menu-bunnmeny-container ul li .focus > a { color: #2ca3a3; }
+.site-8 #nav_menu-2 { width: 100%; }
+
+.site-10 #site-header { float: none; }
+.site-10 .socialbox { display: none; }
+.site-10 #secondary .secondary-navigation { margin-left: -21px; }
+.site-10 .secondary-navigation ul { margin-top: 7px; }
+.site-10 #primary-sidebar .widget-title { display: block; }
+
+.tag-fremhevet .entry-meta { display: none; } /* Styler bort dato og forfatter på "fremhevet" innlegg som brukes i slider */
+.featured-content .tag-fremhevet .entry-meta { display: block; } /* Styler inn kategori her */
+
+@media screen and ( min-width: 783px ) {
+	.primary-navigation ul ul a { width: 87%; min-width: 130px; padding-top: 10px; padding-bottom: 10px; } /* Undermenyer */
+}
+#primary-navigation.site-navigation.primary-navigation { font-size: 76%; }
+#menu-hovedmeny.nav-menu a { padding-left: 8px; }
+#secondary { width: 180px; padding-left: 20px; padding-right: 20px; }
+.content-area { padding-top: 2px; }
+.grid .featured-content .entry-header { max-height: 102px; overflow-y: auto; } /* 94px height: 100px */
+/*.site-content .entry-header { padding-top: 40px; }*/
+/*.site-content .has-post-thumbnail .entry-header { padding-top: 20px; } /* Tettest mulig */
+.widget { font-size: inherit; }
+.widget_wp_sidebarlogin { margin-bottom: 1.6em; }
+
+/* Styling av annonser */
+#introductory { height: 150px; margin: 0 50px 0 170px; }
+#head-sidebar .annonser { margin-bottom: 0; list-style-type: none; margin-left: 0 !important}
+#head-sidebar .annonser img { max-width: 100%; }
+/*#head-sidebar .annonser li { float: right; height: 150px; max-width: 80%; padding: 0 2px; overflow: hidden; }*/
+#head-sidebar .annonser li { margin-left: 32px; float: left; height: 150px; padding: 0 0 0 0; overflow-y: hidden; }
+#head-sidebar .annonser li img { width: 100%; height: auto; }
+.primary-sidebar .annonser li { margin-top: 6%; }
+.site:before{ width: 200px; }
+#annonser-mobi { text-align: center; margin: 0 0 2px; padding: 0 0; }
+#annonser-mobi img { max-width: 100%; }
+hr.annonse { margin: 1px 0; }
+
+@media screen and ( min-width: 1220px ) {
+/*	#head-sidebar .annonser li#annonser-bred { margin-left: 0; }*/
+/*	#head-sidebar .annonser li#annonser-smal { display: none; }*/
+}
+
+/*@media screen and ( min-width: 1470px ) {
+	#head-sidebar .annonser li#annonser-bred { margin-left: 10px; }
+}
+
+@media screen and ( min-width: 1480px ) {
+	#head-sidebar .annonser li#annonser-bred { margin-left: 20px; }
+}
+
+@media screen and ( min-width: 1490px ) {
+	#head-sidebar .annonser li#annonser-bred { margin-left: 30px; }
+}
+
+@media screen and ( min-width: 1500px ) {
+	#head-sidebar .annonser li#annonser-bred { margin-left: 40px; }
+}
+
+@media screen and ( min-width: 1510px ) {
+	#head-sidebar .annonser li#annonser-bred { margin-left: 50px; }
+}
+
+@media screen and ( max-width: 1219px ) {
+	#head-sidebar .annonser li#annonser-smal { margin-left: 50px; }
+/*	#head-sidebar .annonser li#annonser-bred { display: none; }
+}*/
+
+@media screen and ( min-width: 768px ) {
+	#annonser-mobi, .annonse-mobi { display: none; }
+}
+
+@media screen and ( max-width: 767px ) {
+	#head-sidebar .annonser li#annonser-bred { display: none; }
+	#head-sidebar .annonser li#annonser-smal { display: none; }
+}
+
+#content-sidebar .textwidget a img,
+#content-sidebar .pp-portaler-widget a img { max-width: 32%; margin-right: 1%; margin-bottom: 1%; float: left; }
+
+#primary-sidebar .widget:nth-of-type(2) { border-top: 5px solid #000; }
+#primary-sidebar .widget.pods_widget_view  { border-top: 0 none }
+.widget .wp-caption-text { color: #000000; font-weight: bold; font-size: 12px; }
+.widget_image .wp-caption { width: 100% !important; } 
+.widget_image .alignright img { padding-left: 20px; }
+
+#head-sidebar .widgettitle,
+#primary-sidebar .pods_widget_view .widget-title { display: none; }
+
+
+/*#content-sidebar { padding-top: 0; } .home  18px */
+h3 { font-weight: normal; }
+.post-thumbnail img { width: 100%; }
+.header-main { font-size: 104%; padding-left: 20px; }
+.header-main, .site-info { background-color: #f4f4f4; }
+#supplementary + .site-info { border-top: 0 none !important; }
+.footer-sidebar { border-top: 5px solid #000000; padding-top: 7px; }
+#footer-sidebar { height: 50px !important; }
+.site-content blockquote.alignleft { margin-left: -14%; }
+.site-content blockquote.alignright { width: calc(40% + 14%); }
+/*.archive-header, .page-header { display: none; }*/
+.tax-produktkategori .page-header { display: block; }
+.site-content{ position: relative; top: 4px; }
+.has-post-thumbnail .site-content{ position: relative; top: -54px; }
+.singular .site-content .hentry.has-post-thumbnail { margin-top: 0px; }
+.content-sidebar { padding-top: 6px; position: relative; z-index: 1; } /* 18px */
+
+/* Styling av Ansatt-siden */
+.ansatt-header .avatar { float: left; padding: 0 10px 10px 0; }
+.ansatt-name { clear: none; font-size: 20px; }
+.ansatt-content { clear: left; }
+.ansatt-content .hidden { display: none; }
+.ansatt-content .pointer {cursor: pointer; }
+
+/* Styling av Pods single visning*/
+.entry-content .pod-fields dt { float: left; }
+.entry-content .pod-fields dd { padding-left: 140px; padding-bottom: 0px; margin-bottom: 15px; }
+dl [rel='tag'], body [rel='tag'] { text-decoration: none; color: inherit; }
+.type-prosjekt .byline { display: none; }
+.site-2 .type-oppskrift .pod-fields { float: left; }
+#naeringsinnhold { max-width: 30%; font-size: 75%; float: right; border: 1px solid rgba(0,0,0,0.1); padding: 10px 10px 0 10px; background-color: #f4f4f4; }
+#naeringsinnhold h2 { font-size: 120%; text-transform: uppercase; }
+
+/* Styling av produkter */
+.site-8 #content dt { float: left; width: 30% }
+.site-8 #content dd { float: left; width: 50%; }
+
+/* Styling av skjemaer */
+ul.wpuf-form li input, ul.wpuf-form li .wpuf-fields textarea { background-color: transparent !important; -webkit-box-shadow: none !important; box-shadow: none !important; border: 1px solid rgba(0,0,0,0.1) !important; margin-right: 10px; }
+.wpuf-info { background-color: #f4f4f4 !important; -webkit-box-shadow: none !important; box-shadow: none !important; border: 1px solid rgba(0,0,0,0.1) !important; }
+ul.wpuf-form li .wpuf-fields select[multiple] { width: 100%;  }
+.site-1 ul.wpuf-form .wpuf-submit input[type=submit], .site-1 ul.wpuf-form li .wpuf-fields a.file-selector { background: #3366FF !important; color: #000000; border: 1px solid rgba(0,0,0,0.1); }
+.site-2 ul.wpuf-form .wpuf-submit input[type=submit], .site-2 ul.wpuf-form li .wpuf-fields a.file-selector { background: #00DD00 !important; color: #000000; border: 1px solid rgba(0,0,0,0.1); }
+.site-3 ul.wpuf-form .wpuf-submit input[type=submit], .site-3 ul.wpuf-form li .wpuf-fields a.file-selector { background: #ffff00 !important; color: #000000; border: 1px solid rgba(0,0,0,0.1);  }
+.site-3 ul.wpuf-form .wpuf-el.kommune label { display: block; }
+.site-3 ul.wpuf-form .wpuf-fields textarea[name="toc"] { position: relative; left: -45%; padding-bottom: .1em; min-width: 150%; line-height: 110%; border: none !important; }
+.site-3 ul.wpuf-form li { padding: 0px; }
+.site-3 ul.wpuf-form li .wpuf-section-wrap .wpuf-section-details { font-size: 14px; }
+.site-4 ul.wpuf-form .wpuf-submit input[type=submit], .site-4 ul.wpuf-form li .wpuf-fields a.file-selector { background: #FF9900 !important; color: #000000; border: 1px solid rgba(0,0,0,0.1); }
+
+.site-5 ul.wpuf-form .wpuf-submit input[type=submit], .site-5 ul.wpuf-form li .wpuf-fields a.file-selector { background: #FF0000 !important; color: #000000; border: 1px solid rgba(0,0,0,0.1); }
+.site-5 ul.wpuf-form li input { margin-right: 0; }
+.site-5 ul.wpuf-form .wpuf-el.gjenta label, .site-5 ul.wpuf-form .wpuf-el.periode label, .site-5 ul.wpuf-form .wpuf-el.ukedager label { margin-right: 6px; white-space: nowrap; }
+
+.site-6 ul.wpuf-form .wpuf-submit input[type=submit], .site-6 ul.wpuf-form li .wpuf-fields a.file-selector { background: #CC99FF !important; color: #000000; border: 1px solid rgba(0,0,0,0.1); }
+.site-6 .contact-form label.checkbox { font-weight: normal; padding-bottom: 10px; }
+ul.wpuf-form li .wpuf-label { font-weight: bold; width: 30%; }
+ul.wpuf-form li .wpuf-fields { width: 70%; }
+.wpuf-fields #pass-strength-result { color: #eeeeee; }
+.wpuf-el .wpuf-label label[for="wpuf-cls"]:after { content: "Skriv inn tegn" !important; }
+.site-7 ul.wpuf-form .wpuf-submit input[type=submit], .site-7 ul.wpuf-form li .wpuf-fields a.file-selector { background: #B6FF00 !important; color: #000000; border: 1px solid rgba(0,0,0,0.1); }
+
+
+/* Styling av dato-tidsvelger i aktivitetsskjema */
+.ui-datepicker { width: 20%; }
+.ui-datepicker .ui-datepicker-header { background-color: #f4f4f4; }
+.ui-datepicker .ui-datepicker-title { text-transform: uppercase; font-weight: 200; font-family: inherit; }
+.ui-datepicker table { border: 0px solid #ffffff; }
+.ui-state-default, .ui-datepicker th, .ui-datepicker td { font-size: 75%; width: 18px; height: auto; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 75px; }
+.ui-timepicker-div, .ui-datepicker .ui-datepicker-buttonpane button { font-size: 75%; }
+.ui-widget-content { border: 1px solid rgba(0,0,0,0.1); }
+.ui-corner-all { border-radius: 0px; }
+.ui-state-highlight, .ui-widget-content .ui-state-highlight { border: 1px solid #FF0000; color: #FF0000; font-weight: bold; }
+
+/* Jetpack Subscription Widget */
+.jetpack_subscription_widget { margin-bottom: 4px; }
+.jetpack_subscription_widget p:nth-child(3):not(#subscribe-submit),
+.jetpack_subscription_widget form:nth-child(4) { display: none; }
+
+/* Jetpack Related */
+div#jp-relatedposts div.jp-relatedposts-items .jp-relatedposts-post { height: 180px; }
+
+/* Site specific things
+						Hovedfarge		Lenkefarge		Aktivfarge
+PensjonistPortalen      #3366FF
+ErnæringsPortalen       #119911			#1fa71f			#028a02
+SeniorBoPortalen        #FFFF00			#95951d
+FrittBrukervalgPortalen #FF9900			#be5800
+SeniorAktiviteter       #FF0000
+SeniorKortet            #8844CC
+BPA-Portalen            #B6FF00
+E-SeniorPortalen        #44BBBB			#2ca3a3			#2aa1a1
+SeniorØkonomi           #D4AF37			#936e00
+Online-trim             #C4037D
+Online-gudstjeneste     #999999
+*/
+/* Pensjonistportalen body.site-1 */
+
+.site-1 .content-sidebar .entry-title { font-size: 18px; font-weight: 300; line-height: 1.3333333333; margin: 0; }
+.site-1 .content-sidebar .entry-header { border-color: #ffffff; border-style: solid; border-width: 12px 0px; padding: 0; }
+.site-1 .hentry { margin: 0 auto 18px; }
+.site-1 #text-3.widget .widget-title { margin-bottom: -30px; }
+
+/* Ernæringsportalen body.site-2 */
+.ernfyskom { font-size: 16px; }
+
+/* body.site-2 .entry-content { margin-left: 40px; margin-right: 0; } */
+
+/* Styling av bbPress diskusjonsfora generelt */
+#bbpress-forums { /* width: 120%; */ font-family: sans-serif; }
+#bbpress-forums #subscription-toggle { padding-left: 5px; }
+#bbpress-forums .bbp-template-notice { background-color:
+#efefef; border: 1px solid rgba(0,0,0,0.1); }
+#bbpress-forums li.bbp-header { background: #ffffff; text-transform: uppercase; font-weight: bold; padding: 10px 6px; border-top: 5px solid #000000; }
+#bbpress-forums ul.bbp-topics, #bbpress-forums ul.bbp-replies { border-left: 0px solid #eee; border-right: 0px solid #eee; }
+#bbpress-forums div.bbp-reply-content, #bbpress-forums li.bbp-header .bbp-reply-content, #bbpress-forums li.bbp-footer .bbp-reply-content { margin-left: 110px; padding-right: 0px; }
+#bbpress .post { padding-left: 0px; }
+#bbpress-forums li.bbp-topic-title { width: 45%; }
+#bbpress-forums li.bbp-topic-voice-count, li.bbp-topic-reply-count { width: 15%; }
+#bbpress-forums .bbp-the-content-wrapper textarea.bbp-the-content { border: 1px solid rgba(0,0,0,0.1); }
+#bbpress-forums li.bbp-footer { background: #ffffff; text-transform: uppercase; font-weight: bold; border-top: 5px solid #000000; }
+#bbpress-forums .bbp-template-notice, #bbpress-forums ul.odd { background-color: #f4f4f4 !important; }
+.type-forum .entry-content { min-width: 92%; }
+#bbpress-forums p.bbp-topic-meta span { white-space: normal; }
+.site-2 .bbp_widget_login .logout-link, .site-9 .bbp_widget_login .logout-link { text-transform: uppercase; background-color: #11911 !important; color: #2b2b2b !important; padding: 5px 15px; }
+.bbp-body, #bbpress-forums .bbp-forum-info .bbp-forum-content { font-size: 15px; }
+.bbp-body #annonser-mobi, .bbp-body .annonse-mobi { display: none; }
+.quicktags-toolbar { display: none; }
+.bbp_widget_login .bbp-logged-in h4 :after { content: ' (brukerprofil)'; font-size: xx-small; font-weight: normal; }
+#bbpress-forums .bbp-the-content-wrapper textarea.bbp-the-content,
+#bbpress-forums input#bbp_topic_title { border-color: rgba( 0, 0, 0, 0.4 ) }
+
+@media screen and ( min-width: 768px ) {
+	.forum-titles li { word-break: break-all; padding: 0 1px; }
+}
+
+/* Styling av frontsiden og singlevisning av "Forslag til meny for uken" */
+.site-2 .entry-content.type-ukemeny { border-bottom: 5px solid #000000; }
+.site-2 .entry-content.type-ukemeny dt { clear: left; width: 25%; float: left; padding: 0 10px 20px 0; }
+.site-2 .entry-content.type-ukemeny dd { float: left; max-width: 65%;  }
+.site-2 .entry-content.type-ukemeny dd .oppskrift-title { text-transform: uppercase; text-decoration: none; text-shadow: none; }
+.site-2 .entry-content.type-ukemeny dd p { margin-bottom: 5px; }
+.site-2 .entry-content.type-ukemeny dd h2:first-child { font-size: 125%; }
+.site-2 .page-header { margin: 0 auto 30px; }
+
+/* Styling single visning Oppskrifter */
+.site-2 .n-ingredienser { padding: 0 10px 0 0; width: 38%; float: left; }
+.site-2 .n-ingredienser ul { list-style-type: none; margin: 0 0 24px 0; }
+.site-2 .n-ingredienser li { font-weight: 500; }
+.site-2 .naering { padding: 0 0; width: 54%; float: left; }
+.site-2 .n-verdi, .site-2 .p-verdi { text-align: right; padding-right: 10px; white-space: nowrap; }
+.site-2 .beskrivelse { width: 48%; }
+.site-2 #oppskrift-info .pod-fields .ant-porsjoner, .site-2 #oppskrift-info .pod-fields .ant-minutter { float: left; }
+.site-2 #oppskrift-info .pod-fields .ant-minutter dd { float: right; padding-left: 10px; }
+.site-2 #oppskrift-info .pod-fields dt { padding: 0 10px 0 0; }
+.site-2 #oppskrift-info .pod-fields dd { padding: 0 10px 0 10px; }
+.site-2 .entry-content th { font-size: 13px; font-weight: 500; text-align: center; }
+.site-2 #oppskrift-info .pod-fields dt.ant-minutter { float: left; padding-left: 30px; }
+
+@media screen and ( max-width: 1184px ) {
+	.entry-title { font-size: 28px; }
+}
+
+/* Seniorboportalen body.site-3 */
+
+/* .pfs-post-box
+	{ background-color: #ffffff; border: none; }
+#pfs_form .input-text, .pfs-post-box textarea, .pfs-post-box select
+	{ width: 100%; border: 1px solid rgba(0,0,0,0.1); border-radius: 0px 0px; box-shadow: 0 0; margin-bottom: 13px; text-indent: 0px; }
+.pfs-post-box textarea
+	{ text-indent: 0px; }
+.pfs-post-box label, .pfs-post-box input
+	{ background: none repeat scroll 0 0 #ffffff; box-shadow: none; color: #000000; font-size: 15px; font-weight: bold; display: block; position: static; padding: 0px 10px !important; border-radius: 0px; text-indent: 0px; }
+.MultiFile-wrap
+	{ margin-left: 0px; }
+input#post.submit
+	{ padding: 5% 15%; font-size: 150%; }
+.pfs-post-box select
+	{ padding-left: 0px; font-size: 120%; } */
+#pfswidget-2 a { padding: 5% 15%; background: none repeat scroll 0 0 yellow; border: 1px solid rgba(0,0,0,0.1); font-size: 120%; }
+.archive-header .page-title { font-size: 22px; font-weight: 700; }
+.archive-header { margin-bottom: 22px; }
+.site-3.post-type-archive-prosjekt .content-area dt:not(:first-of-type), .site-3.post-type-archive-prosjekt .content-area dd:not(:first-of-type), .site-3.tax-prosjektkommune .content-area dt:not(:first-of-type), .site-3.tax-prosjektkommune .content-area dd:not(:first-of-type) { border-top: 1px solid rgba(0,0,0,0.3); }
+.site-3 .content-area .prosjekt-image { float: left; clear: left; max-width: 48%; padding: 1em 0; }
+/* .site-3 .content-area .prosjekt-image img { width: 300px; } */
+.site-3 .content-area .tax-kommune { margin-top: 0; }
+.site-3 .content-area dd.prosjekt-desc { margin-bottom: 0; }
+.site-3 .content-area .prosjekt-desc { float: left; max-width: 49%; padding: 1em 0 1em 3%; }
+.site-3 .content-area .prosjekt-desc .entry-title { font-size: 18px; }
+.site-3 .pods_widget_view .group-0 { float: left; padding-right: 3em; margin-bottom: 20px; }
+
+/* Frittbrukervalgportalen body.site-4 */
+
+/* Styling av Leverandørtabellvisning */
+/*.site-4 .archive-title { font-size: 25px; font-weight: 700;} */
+.site-4 .janei-col { text-align: center; width: 17%; }
+.site-4 #leverandor-table { border-collapse: collapse; }
+.site-4 #leverandor-table th { text-transform: uppercase; vertical-align: middle; }
+.site-4 #leverandor-table tr { border-bottom: 1px solid #dddddd; }
+.site-4 #leverandor-table td, .site-4 th.leverandor-col { padding: 10px 10px; }
+.site-4 #leverandor-table tbody tr:hover { background: #eeeeee; }
+
+/*.site-4 .widget.pods_widget_view .annonser{ color: black; }
+.site-4 .widget.pods_widget_view .annonser li { padding-bottom: 10px; border-bottom: 1px solid #dddddd; }
+.site-4 .widget.pods_widget_view .annonser h2 { font-weight: 600; font-size: 135%; } */
+
+/* Senioraktiviteter body.site-5 */
+.site-5.post-type-archive-aktivitet .content-area dt:not(:first-of-type), .site-5.post-type-archive-aktivitet .content-area dd:not(:first-of-type), .site-5.tax-aktivitetkommune .content-area dt:not(:first-of-type), .site-5.tax-aktivitetkommune .content-area dd:not(:first-of-type) { border-top: 1px solid rgba(0,0,0,0.3); }
+.site-5 .content-area .aktivitet-image { float: left; clear: left; width: 40%; padding: 1em 0; }
+.site-5 .content-area .aktivitet-image img { max-width: 100%; }
+.site-5 .content-area .tax-fylke { margin-top: 0; }
+.site-5 .content-area dd.aktivitet-desc { margin-bottom: 0; }
+.site-5 .content-area .aktivitet-desc { float: left; max-width: 49%; padding: 1em 0 1em 3%; }
+.site-5 .content-area .aktivitet-desc .entry-title { font-size: 18px; }
+.site-5 .dato-col { width: 2em; }
+.site-5 .tid-col  { width: 5em; }
+.site-5 .aktivitetstype-col { width: 25%; }
+.site-5 .title-col { width: 38%; }
+
+/* Styling av Aktivitetstabell */
+.site-5 th, .site-5 td { padding: 5px; }
+/* .site-5 .archive-title { font-size: 33px; font-weight: 300; line-height: 1.0909090909; margin-bottom: 12px; margin: 0 0 12px 0; text-transform: uppercase; } */
+.site-5 .dato-col { white-space: nowrap; }
+.site-5 .pods_widget_view .group-0 { float: left; padding-right: 3em; margin-bottom: 20px; }
+
+/* BPA body.site-7 */
+.site-7.post-type-archive-aktivitet .content-area dt:not(:first-of-type), .site-5.post-type-archive-aktivitet .content-area dd:not(:first-of-type), .site-5.tax-aktivitetkommune .content-area dt:not(:first-of-type), .site-5.tax-aktivitetkommune .content-area dd:not(:first-of-type) { border-top: 1px solid rgba(0,0,0,0.3); }
+.site-7 .content-area .aktivitet-image { float: left; clear: left; width: 40%; padding: 1em 0; }
+.site-7 .content-area .aktivitet-image img { max-width: 100%; }
+.site-7 .content-area .tax-fylke { margin-top: 0; }
+.site-7 .content-area dd.aktivitet-desc { margin-bottom: 0; }
+.site-7 .content-area .aktivitet-desc { float: left; max-width: 49%; padding: 1em 0 1em 3%; }
+.site-7 .content-area .aktivitet-desc .entry-title { font-size: 18px; }
+.site-7 .dato-col { width: 2em; }
+.site-7 .tid-col  { width: 5em; }
+.site-7 .aktivitetstype-col { width: 25%; }
+.site-7 .title-col { width: 38%; }
+
+/* Styling av Aktivitetstabell */
+.site-7 th, .site-7 td { padding: 5px; }
+/* .site-7 .archive-title { font-size: 33px; font-weight: 300; line-height: 1.0909090909; margin-bottom: 12px; margin: 0 0 12px 0; text-transform: uppercase; } */
+.site-7 .dato-col { white-space: nowrap; }
+.site-7 .pods_widget_view .group-0 { float: left; padding-right: 3em; margin-bottom: 20px; }
+
+@media screen and ( max-width: 1184px ) {
+	.site-4 table, .site-5 table { font-size: 80%; }
+	.site-5 .dato-col, .site-7 .dato-col { white-space: normal; }
+	.site-4 td:first-of-type, .site-5 td:first-of-type { padding-left: 4px; }
+}
+
+@media screen and ( max-width: 768px ) {
+	.site-5 table, .site-5 table { font-size: 60%; }
+	.site-content { padding-left: 4px; }
+	.site-5 .content-area .aktivitet-image { width: 100%; }
+	.site-5 .content-area .aktivitet-desc { max-width: none; }
+}
+
+/* Seniorkortet body.site-6 */
+
+/* BPA-Portalen body.site-7*/
+
+.site-7 .janei-col { text-align: center; width: 17%; }
+.site-7 #leverandor-table { border-collapse: collapse; }
+.site-7 #leverandor-table th { text-transform: uppercase; vertical-align: middle; }
+.site-7 #leverandor-table tr { border-bottom: 1px solid #dddddd; }
+.site-7 #leverandor-table td, .site-7 th.leverandor-col { padding: 10px 10px; }
+.site-7 #leverandor-table tbody tr:hover { background: #eeeeee; }
+.site-7 .widget .button { background-color: #B6FF00; color: #000000; border: 1px solid rgba(0,0,0,0.1); }
+
+/* Etter ønske fra KCD 26.06.14 */
+.site-7 .entry-content .simplePullQuote { background-image: none; text-indent: 5px; border-top: 5px solid #000000; border-bottom: 0px; }
+.site-7 .entry-content .simplePullQuote p { margin-bottom: 0; font-style: italic; font-weight: 400; }
+.site-7 .entry-content ul { margin: 1em 0 1em 2em; }
+.site-7 .entry-content ul li { margin-bottom: 0.5em; }
+
+/* E-SeniorPortalen body.site-8 */
+
+/* SeniorØkonomi body.site-9 */
+
+/* Portalene body.site-10 */
+
+/* .site:before {
+	background-color: #fff;
+}
+.secondary-navigation a, .widget-area a, #secondary .widget-title, .textwidget p, .site-description { color: rgb(38,38,38); }
+.site-description { margin: 10px 0px 9px; }
+
+/* Fjerner høyrepadding på smal skjer, når marger ikke trengs, slik at #masthead ikke forskyves */
+@media screen and ( max-width: 1460px ), screen and ( max-device-width: 1460px ) {
+	body { padding-right: 1px !important; }
+}
+
+@media screen and ( max-width: 1184px ) {
+	#head-sidebar .annonser.ann-num-1 li {  }
+/*	#head-sidebar .annonser.ann-num-2 li:nth-child(n+2) { display: none; }*/
+}
+
+@media screen and ( min-width: 768px ) AND ( max-width: 1007px ) {
+	.search-box-wrapper {
+		padding-left: 182px;
+	}
+
+	.site-content {
+		margin-right: 29.04761904%;
+		margin-left: 182px;
+	}
+	.featured-content {
+		padding-left: 182px;
+	}
+}
+
+@media screen and ( max-width: 700px ) {
+	#site-header, #introductory, .socialbox { display: none; }
+/*	#head-sidebar .annonser.ann-num-1 li { display: none; }
+	#head-sidebar .annonser.ann-num-2 li { display: none; }*/
+	.site-header .site-title .velkommen { display: none; }
+	/* styling av skjemaer mangler */
+}
+
+@media screen and ( min-width: 768px) {
+	.search-box-wrapper {
+		padding-left: 182px;
+	}
+
+	.main-content {
+		float: left;
+	}
+
+	.site-content {
+		margin-right: 29.04761904%;
+/*		margin-left: 182px; */
+	}
+
+	.site-content .entry-header {
+		margin-top: 0;
+	}
+
+	.content-sidebar {
+		margin-left: -29.04761904%;
+		width: 29.04761904%;
+	}
+
+	.site:before {
+		background-color: #000;
+		content: "";
+		display: block;
+		height: 100%;
+		min-height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 182px;
+		z-index: 2;
+	}
+
+	#secondary {
+		background-color: transparent;
+		border: 0;
+		clear: none;
+		float: left;
+		margin: 0 0 0 -100%;
+		min-height: 100vh;
+	/*	width: 122px;*/
+	}
+
+	.primary-sidebar {
+		padding-top: 0;
+	}
+
+	.site-description {
+		display: block;
+		margin: -3px 0 21px;
+	}
+
+	.site-description:empty {
+		margin: 0;
+	}
+
+	.secondary-navigation {
+		font-size: 11px;
+		margin: 0 -30px 48px;
+		width: 182px;
+	}
+
+	.secondary-navigation li {
+		border-top: 1px solid rgba(255, 255, 255, 0.2);
+		position: relative;
+	}
+
+	.secondary-navigation a {
+		padding: 10px 30px;
+	}
+
+	.secondary-navigation ul ul {
+		background-color: #24890d;
+		position: absolute;
+		top: 0;
+		left: -999em;
+		width: 182px;
+		z-index: 99999;
+	}
+
+	.secondary-navigation li li {
+		border-top: 0;
+	}
+
+	.secondary-navigation li:hover > a,
+	.secondary-navigation li.focus > a {
+		background-color: #24890d;
+		color: #fff;
+	}
+
+	.secondary-navigation ul ul a:hover,
+	.secondary-navigation ul ul li.focus > a {
+		background-color: #41a62a;
+	}
+
+	.secondary-navigation ul li:hover > ul,
+	.secondary-navigation ul li.focus > ul {
+		left: 162px;
+	}
+
+	.secondary-navigation .menu-item-has-children > a {
+		padding-right: 38px;
+	}
+
+	.secondary-navigation .menu-item-has-children > a:after {
+		-webkit-font-smoothing: antialiased;
+		content: "\f501";
+		display: inline-block;
+		font: normal 8px/1 Genericons;
+		position: absolute;
+		right: 26px;
+		top: 14px;
+		vertical-align: text-bottom;
+	}
+
+	.footer-sidebar .widget,
+	.primary-sidebar .widget {
+		font-size: 12px;
+		line-height: 1.5;
+	}
+
+	.footer-sidebar .widget {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing:    border-box;
+		box-sizing:         border-box;
+		float: left;
+		padding: 0 30px;
+		width: 25%;
+	}
+
+	.footer-sidebar .widget h1,
+	.primary-sidebar .widget h1 {
+		font-size: 20px;
+		line-height: 1.2;
+	}
+
+	.footer-sidebar .widget h2,
+	.primary-sidebar .widget h2 {
+		font-size: 18px;
+		line-height: 1.3333333333;
+	}
+
+	.footer-sidebar .widget h3,
+	.primary-sidebar .widget h3 {
+		font-size: 16px;
+		line-height: 1.5;
+	}
+
+	.footer-sidebar .widget h4,
+	.primary-sidebar .widget h4 {
+		font-size: 14px;
+		line-height: 1.7142857142;
+	}
+
+	.footer-sidebar .widget h5,
+	.primary-sidebar .widget h5 {
+		font-size: 12px;
+		line-height: 2;
+	}
+
+	.footer-sidebar .widget h6,
+	.primary-sidebar .widget h6 {
+		font-size: 11px;
+		line-height: 2.1818181818;
+	}
+
+	.footer-sidebar .widget code,
+	.footer-sidebar .widget kbd,
+	.footer-sidebar .widget tt,
+	.footer-sidebar .widget var,
+	.footer-sidebar .widget samp,
+	.footer-sidebar .widget pre,
+	.primary-sidebar .widget code,
+	.primary-sidebar .widget kbd,
+	.primary-sidebar .widget tt,
+	.primary-sidebar .widget var,
+	.primary-sidebar .widget samp,
+	.primary-sidebar .widget pre {
+		font-size: 11px;
+		line-height: 1.6363636363;
+	}
+
+	.footer-sidebar .widget blockquote,
+	.primary-sidebar .widget blockquote {
+		font-size: 14px;
+		line-height: 1.2857142857;
+	}
+
+	.footer-sidebar .widget blockquote cite,
+	.primary-sidebar .widget blockquote cite {
+		font-size: 12px;
+		line-height: 1.5;
+	}
+
+	.footer-sidebar .widget input,
+	.footer-sidebar .widget textarea,
+	.primary-sidebar .widget input,
+	.primary-sidebar .widget textarea {
+		font-size: 12px;
+		padding: 3px 2px 4px 4px;
+	}
+
+	.footer-sidebar .widget input[type="button"],
+	.footer-sidebar .widget input[type="reset"],
+	.footer-sidebar .widget input[type="submit"],
+	.primary-sidebar .widget input[type="button"],
+	.primary-sidebar .widget input[type="reset"],
+	.primary-sidebar .widget input[type="submit"] {
+		padding: 5px 15px 4px;
+	}
+
+	.footer-sidebar .widget .widget-title,
+	.primary-sidebar .widget .widget-title {
+		font-size: 11px;
+		font-weight: 900;
+		line-height: 1.6363636363;
+		margin-bottom: 18px;
+	}
+
+	.footer-sidebar .widget_twentyfourteen_ephemera .entry-title,
+	.footer-sidebar .widget_twentyfourteen_ephemera .entry-meta,
+	.footer-sidebar .widget_twentyfourteen_ephemera .wp-caption-text,
+	.footer-sidebar .widget_twentyfourteen_ephemera .post-format-archive-link,
+	.footer-sidebar .widget_twentyfourteen_ephemera .entry-content table,
+	.primary-sidebar .widget_twentyfourteen_ephemera .entry-title,
+	.primary-sidebar .widget_twentyfourteen_ephemera .entry-meta,
+	.primary-sidebar .widget_twentyfourteen_ephemera .wp-caption-text,
+	.primary-sidebar .widget_twentyfourteen_ephemera .post-format-archive-link,
+	.primary-sidebar .widget_twentyfourteen_ephemera .entry-content table {
+		font-size: 11px;
+		line-height: 1.6363636363;
+	}
+
+	.footer-sidebar .widget_archive li,
+	.footer-sidebar .widget_categories li,
+	.footer-sidebar .widget_links li,
+	.footer-sidebar .widget_meta li,
+	.footer-sidebar .widget_nav_menu li,
+	.footer-sidebar .widget_pages li,
+	.footer-sidebar .widget_recent_comments li,
+	.footer-sidebar .widget_recent_entries li,
+	.primary-sidebar .widget_archive li,
+	.primary-sidebar .widget_categories li,
+	.primary-sidebar .widget_links li,
+	.primary-sidebar .widget_meta li,
+	.primary-sidebar .widget_nav_menu li,
+	.primary-sidebar .widget_pages li,
+	.primary-sidebar .widget_recent_comments li,
+	.primary-sidebar .widget_recent_entries li {
+		border-top: 0;
+		padding: 0 0 6px;
+	}
+
+	.footer-sidebar .widget_archive li:last-child,
+	.footer-sidebar .widget_categories li:last-child,
+	.footer-sidebar .widget_links li:last-child,
+	.footer-sidebar .widget_meta li:last-child,
+	.footer-sidebar .widget_nav_menu li:last-child,
+	.footer-sidebar .widget_pages li:last-child,
+	.footer-sidebar .widget_recent_comments li:last-child,
+	.footer-sidebar .widget_recent_entries li:last-child,
+	.primary-sidebar .widget_archive li:last-child,
+	.primary-sidebar .widget_categories li:last-child,
+	.primary-sidebar .widget_links li:last-child,
+	.primary-sidebar .widget_meta li:last-child,
+	.primary-sidebar .widget_nav_menu li:last-child,
+	.primary-sidebar .widget_pages li:last-child,
+	.primary-sidebar .widget_recent_comments li:last-child,
+	.primary-sidebar .widget_recent_entries li:last-child {
+		padding: 0;
+	}
+
+	.footer-sidebar .widget_categories li ul,
+	.footer-sidebar .widget_nav_menu li ul,
+	.footer-sidebar .widget_pages li ul,
+	.primary-sidebar .widget_categories li ul,
+	.primary-sidebar .widget_nav_menu li ul,
+	.primary-sidebar .widget_pages li ul {
+		border-top: 0;
+		margin-top: 6px;
+	}
+
+	#supplementary {
+		padding: 0;
+	}
+
+	.footer-sidebar {
+		font-size: 12px;
+		line-height: 1.5;
+	}
+
+	/*.featured-content {
+		padding-left: 182px;
+	}*/
+
+	.grid .featured-content .hentry {
+		width: 33.333%;
+		max-width: 33.333%;
+	}
+
+	.grid .featured-content .hentry:nth-child( 2n+1 ) {
+		clear: none;
+	}
+
+	.grid .featured-content .hentry:nth-child( 3n+1 ) {
+		clear: both;
+	}
+
+	.grid .featured-content .entry-header {
+		height: 120px;
+	}
+}
+
+@media screen and ( max-width: 767px) {
+	#secondary { width: 110%; }
+	#secondary .annonser li { float: left; padding-right: 0; }
+	#secondary .annonser li img { width: 90%; }
+}
+.site-content .has-post-thumbnail .entry-header { margin-top: -80px; } /* NY, for å heise innleggstittel mer opp i fremhevet bilde. Knut */
+.site-content .has-post-thumbnail.type-aktivitet .entry-header { margin-top: -54px; } /* NY, for å heise innleggstittel mer opp i fremhevet bilde. Knut */
+
+@media screen and ( max-width: 1260px ) {
+	#secondary { width: 14%; }
+	#secondary .annonser img { height: auto; }
+	.site-content .has-post-thumbnail .entry-header { margin-top: -48px; }
+}
+
+@media screen and ( max-width: 1184px ) {
+	.site-content .has-post-thumbnail .entry-header { margin-top: -24px; } /* NY, for å heise innleggstittel mer opp i fremhevet bilde. Knut */
+	.menu-toggle { z-index: 9; background: transparent; margin: 16px 4px; }
+	.menu-toggle:active,
+	.menu-toggle:focus,
+	.menu-toggle:hover {
+		margin: 16px 4px;
+		top: -16px;
+		right: -4px;
+	}
+}
+
+@media screen and ( max-width: 902px ) {
+	.featured-content .entry-title { font-size: 16px; line-height: 1.05em; }
+}
+
+@media screen and ( max-width: 823px ) {
+	.featured-content .entry-title { font-size: 14px; line-height: 1em; }
+}
+
+@media screen and ( max-width: 767px ) {
+	.site-content .has-post-thumbnail .entry-header { margin-top: -12px; } /* NY, for å heise innleggstittel mer opp i fremhevet bilde. Knut */
+	#secondary { width: 100%; }
+	.site-3 ul.wpuf-form .wpuf-fields textarea[name="toc"] { color: #444444; }
+}
+
+@media screen and ( max-width: 420px ) {
+	.site-content .has-post-thumbnail .entry-header { margin-top: -6px; } /* NY, for å heise innleggstittel mer opp i fremhevet bilde. Knut */
+	.featured-content .entry-title { font-size: 18px; line-height: 1.1em; }
+	#secondary .annonser li { width: 87%; }
+	#secondary .annonser li img { width: 100%; }
+	.site-4 #leverandor-table tr { font-size: 80%; }
+}

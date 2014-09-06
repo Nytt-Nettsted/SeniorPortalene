@@ -1,0 +1,8 @@
+/* Excerpt explaination */
+#visibility { display: none; }
+#pods-meta-more-fields .hndle span { display: none; }
+#pods-meta-more-fields .hndle:after { content: 'Øvrig oppskriftsinformasjon'; }
+#postexcerpt .inside p:last-child { display: none; }
+#postexcerpt h3 span { display: none; }
+#postexcerpt h3:after { content: 'Ernæringsfysiologens kommentar'; }
+#insert-jetpack-contact-form, #add_pod_button { display: none; }
