@@ -62,6 +62,7 @@ get_header(); ?>
 
 				endif;
 			?>
+			<?php get_sidebar( 'content-after' ); ?>
 		</div><!-- #content -->
 	</section><!-- #primary -->
 

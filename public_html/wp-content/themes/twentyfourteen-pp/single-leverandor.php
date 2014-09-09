@@ -24,7 +24,7 @@ get_header(); ?>
 
 				endwhile;
 			?>
-
+			<?php get_sidebar( 'content-after' ); ?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
 

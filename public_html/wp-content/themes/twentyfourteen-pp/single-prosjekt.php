@@ -27,7 +27,7 @@ get_header(); ?>
 						comments_template();
 				endwhile;
 			?>
-
+			<?php get_sidebar( 'content-after' ); ?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
 
