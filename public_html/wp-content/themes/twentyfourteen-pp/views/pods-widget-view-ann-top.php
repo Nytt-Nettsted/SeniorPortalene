@@ -40,7 +40,7 @@
 					'orderby' => 'rand'
 				) );
 				if ( count( $annonse ) ) {
-					$annonse[0]->src = $annonse[0]->ID . ' pos-' . $apos_terms[ $apos ] . '-' . $alev_terms[ $alev ];
+//					$annonse[0]->src = $annonse[0]->ID . ' pos-' . $apos_terms[ $apos ] . '-' . $alev_terms[ $alev ];
 					$annonser[ $apos_terms[ $apos ] ] = $annonse[0];
 					$idsx[] = intval( $annonse[0]->ID );
 				}

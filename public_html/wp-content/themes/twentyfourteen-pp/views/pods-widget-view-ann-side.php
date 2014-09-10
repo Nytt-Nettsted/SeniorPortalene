@@ -43,7 +43,7 @@
 				) );
 //				if( $apos+1 == 2 ) echo PHP_EOL, '<pre>! '; print_r( $wpdb->queries); echo ' !</pre>';
 				if ( count( $annonse ) ) {
-					$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ];
+//					$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ];
 					$annonser[ $apos ] = $annonse[0];
 					$idsx[] = intval( $annonse[0]->ID );
 				}

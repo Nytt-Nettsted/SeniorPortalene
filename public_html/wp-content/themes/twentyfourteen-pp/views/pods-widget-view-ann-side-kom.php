@@ -44,7 +44,7 @@
 					) );
 //					if ( $apos+1 == 1 ) {echo 'mkom ', $apos+1, ' ', $alev, ' ', ($annonse[0]->ID ? $annonse[0]->ID : 0), ' '; print_r( $idsx ); echo '<br/>';}
 					if ( count( $annonse ) ) {
-						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ] . ' ' . $qobj->name;
+//						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ] . ' ' . $qobj->name;
 						$annonser[ $apos ] = $annonse[0];
 						$idsx[] = intval( $annonse[0]->ID );
 					}
