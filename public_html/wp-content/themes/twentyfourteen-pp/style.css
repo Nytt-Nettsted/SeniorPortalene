@@ -253,7 +253,8 @@ Online-gudstjeneste     #999999
 #efefef; border: 1px solid rgba(0,0,0,0.1); }
 #bbpress-forums li.bbp-header { background: #ffffff; text-transform: uppercase; font-weight: bold; padding: 10px 6px; border-top: 5px solid #000000; }
 #bbpress-forums ul.bbp-topics, #bbpress-forums ul.bbp-replies { border-left: 0px solid #eee; border-right: 0px solid #eee; }
-#bbpress-forums div.bbp-reply-content, #bbpress-forums li.bbp-header .bbp-reply-content, #bbpress-forums li.bbp-footer .bbp-reply-content { margin-left: 110px; padding-right: 0px; }
+#bbpress-forums div.bbp-reply-content, #bbpress-forums li.bbp-header .bbp-reply-content, #bbpress-forums li.bbp-footer .bbp-reply-content { margin-left: 110px; padding-right: 1em; }
+#bbpress-forums div.bbp-reply-author { width: 110px; }
 #bbpress .post { padding-left: 0px; }
 #bbpress-forums li.bbp-topic-title { width: 45%; }
 #bbpress-forums li.bbp-topic-voice-count, li.bbp-topic-reply-count { width: 15%; }
@@ -673,7 +674,7 @@ input#post.submit
 
 	.footer-sidebar .widget .widget-title,
 	.primary-sidebar .widget .widget-title {
-		font-size: 11px;
+		font-size: 15px;
 		font-weight: 900;
 		line-height: 1.6363636363;
 		margin-bottom: 18px;
