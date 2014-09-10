@@ -9,6 +9,6 @@ if ( ! is_active_sidebar( 'content-after' ) ) {
 	return;
 }
 ?>
-	<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;" role="complementary">
+	<div id="pp-relatedposts" class="pp-relatedposts" style="display: block;" role="complementary">
         <?php dynamic_sidebar( 'content-after' ); ?>
 	</div>

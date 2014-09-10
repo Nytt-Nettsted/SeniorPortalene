@@ -17,22 +17,22 @@ class PP_After_Content_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		global $post;
-		echo PHP_EOL, '<h3 class="jp-relatedposts-headline">', $instance['title'], '</h3>';
-		echo PHP_EOL, '<div class="jp-relatedposts-items jp-relatedposts-items-visual">';
+		echo PHP_EOL, '<h3 class="pp-relatedposts-headline">', $instance['title'], '</h3>';
+		echo PHP_EOL, '<div class="pp-relatedposts-items pp-relatedposts-items-visual">';
 		$h = idate( 'H' );
 		$ant = intval( $instance['antall'] );
-		$getant = 4 * $ant;
+		$getant = 5 * $ant;
 		$src = 'admin';
 		$sites = pp_sites( $src );
-//		krsort( $sites );
-		shuffle( $sites );
+		krsort( $sites );
+//		shuffle( $sites );
 		foreach ( $sites as $site_id => $site ) {
 			if ( PP_DOMAIN_SITE != $site_id && function_exists( 'stats_get_csv' ) ) {
 				$post->blog_id = get_current_blog_id(); // Signal til switch_blog action
 				switch_to_blog( $site_id );
 				$post_ids = get_transient( 'pp_stats' );
 				$npids = count( $post_ids );
-				if ( false === $post_ids || ( $npids < $getant && ( $h < 9 || $h > 1 ) ) || $h < 1 ) {
+				if ( false === $post_ids || ! is_array( $post_ids) || ( $npids < $getant && ( $h < 9 || $h > 1 ) ) || $h < 1 ) {
 					$stats = stats_get_csv( 'postviews', array( 'days' => $getant, 'limit' => $getant + $ant ) );
 					$post_ids = array_values( array_filter( wp_list_pluck( $stats, 'post_id' ) ) );
 					$npids = count( $post_ids );
@@ -40,11 +40,11 @@ class PP_After_Content_Widget extends WP_Widget {
 					$src = 'fresh';
 				} else
 					$src = 'trans';
-				$pof = get_option( 'page_on_front' );
+//				$pof = get_option( 'page_on_front' );
 				$i = 0;
 				foreach( $post_ids as $post_id ) {
 					$post = get_post( $post_id );
-					if ( $post && ( 'page' != $post->post_type || $pof != $post_id ) && has_post_thumbnail( $post_id ) ) {
+					if ( $post && 'page' != $post->post_type && strpos( 'regist', $post->slug ) === false && has_post_thumbnail( $post_id ) ) {
 						$i++;
 						$post->featured = true;
 						$post->src = $src . ' ' . ( $i + 1 ) . ' av ' . $npids . ' max ' . $ant;
