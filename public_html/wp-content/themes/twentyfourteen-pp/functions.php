@@ -92,6 +92,8 @@ include( 'includes/cpt-tax-defs.php' );
 include( 'includes/library.php' );
 
 function pp_widget_annonser_li( &$annonser, $show_title = false, $image_size = 'post-thumbnail', $cache = false, $li = 'li' ) {
+	if ( ! WP_DEBUG )
+		$cache = '';
 	$num = 0;
 	foreach ( $annonser as $key => $annonse ) {
 		$id = is_numeric( $key ) ? $key + 1 : $key;
