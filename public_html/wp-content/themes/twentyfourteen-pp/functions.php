@@ -449,7 +449,7 @@ function pp_int_page() {
 		<h2>Eksport av interessenter <span class="description">(Alle abonnenter og bidragsytere med kommune[r] registrert)</span></h2>
 		<form action="">
 			<input type="hidden" name="page" value="export-interessent" />
-			<label>Velg fylke: <input name="<?php echo pp_kom_tax(); ?>" value="<?php echo mb_convert_case( esc_attr( $_REQUEST[ pp_kom_tax() ] ),MB_CASE_TITLE, 'UTF-8' ); ?>" /></label>
+			<label>Velg fylke eller kommune: <input name="<?php echo pp_kom_tax(); ?>" value="<?php echo mb_convert_case( esc_attr( $_REQUEST[ pp_kom_tax() ] ),MB_CASE_TITLE, 'UTF-8' ); ?>" /></label>
 			<?php submit_button( 'Søk', 'primary', null, false ); ?>
 			<input type="reset" value="Tilbakestill" onclick="window.location='<?php echo remove_query_arg( pp_kom_tax(), $_SERVER['REQUEST_URI'] ); ?>'" class="button">
 	</form>

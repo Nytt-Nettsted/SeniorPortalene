@@ -1,7 +1,11 @@
 <?php
 function pp_int_export() {
 	echo '<xml version="1.0" encoding="utf-8">';
-	echo PHP_EOL, '<', pp_int_name(), 'er>';
+	$attributes = '';
+	foreach ( $_GET as $key => $value ) {
+		$attributes .= ' ' . $key . '="' . $value . '"';
+	}
+	echo PHP_EOL, '<', pp_int_name(), 'er' . $attributes . '>';
 	foreach ( pp_int_users() as $interessent ) {
 		$interessent->tlf = get_user_meta( $interessent->ID, pp_tel_meta(), true );
 		echo PHP_EOL, ' <', pp_int_name(),
