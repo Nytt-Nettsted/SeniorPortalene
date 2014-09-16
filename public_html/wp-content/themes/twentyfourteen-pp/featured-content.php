@@ -31,7 +31,8 @@ if ( pp_featured_content_pos()[ get_current_blog_id() ] == 'top' ) {
 		//query_posts();
 	} elseif ( get_current_blog_id() == 2 ) {
 		add_filter( 'get_the_categories', 'pp_get_the_categories' );
-		$featured_posts = array_slice( array_merge( get_posts( array( 'post_type' => 'post', 'posts_per_page' => 1 ) ), twentyfourteen_get_featured_posts() ), 0, 2 );
+//		$featured_posts = array_slice( array_merge( get_posts( array( 'post_type' => 'post', 'posts_per_page' => 1 ) ), twentyfourteen_get_featured_posts() ), 0, 2 );
+		$featured_posts = twentyfourteen_get_featured_posts();
 		get_template_part( 'content', 'featured-forums' );
 		foreach ( $featured_posts as $post ) {
 			$post->featured = true;
