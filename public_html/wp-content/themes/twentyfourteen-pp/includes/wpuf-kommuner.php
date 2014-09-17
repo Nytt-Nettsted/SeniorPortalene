@@ -119,7 +119,11 @@ jQuery(document).ready(function($){
 });
 </script>
 <?php
+	function pp_images_cmp( $a, $b ) {
+		return strcmp( $a->post_title, $b->post_title );
+	}
 	$images = get_attached_media( 'image', 1137 );
+	usort( $images, 'pp_images_cmp' );
 	echo PHP_EOL, '<div class="wpuf-label"><label for="image-selection">Enten: Velg bilde fra galleri</label></div>';
 	echo PHP_EOL, '<div class="wpuf-fields">';
 	echo PHP_EOL, '<select id="image-selection" name="lib-image">';
