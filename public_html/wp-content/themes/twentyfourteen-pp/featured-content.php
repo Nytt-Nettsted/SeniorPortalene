@@ -3,13 +3,17 @@
  * The template for displaying featured content.
  *
  */
+
 function pp_get_the_categories( $cats ) {
 	return array( reset( $cats ) );
 }
 
+global $wp_query;
 $include_one  = true; // false;		// Set to false not to show posts from main site
 
 if ( pp_featured_content_pos()[ get_current_blog_id() ] == 'top' ) {
+	pp_loop_start( $wp_query );
+	remove_action( 'loop_start', 'pp_loop_start' );
 ?>
 <div id="featured-content" class="featured-content">
 <?php

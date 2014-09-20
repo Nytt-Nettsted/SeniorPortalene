@@ -93,13 +93,13 @@ include( 'includes/library.php' );
 
 function pp_widget_annonser_li( &$annonser, $show_title = false, $image_size = 'post-thumbnail', $cache = false, $li = 'li' ) {
 	if ( ! WP_DEBUG )
-		$cache = '';
+		$cache = false;
 	$num = 0;
 	foreach ( $annonser as $key => $annonse ) {
 		$id = is_numeric( $key ) ? $key + 1 : $key;
 		$url = esc_url( get_post_meta( $annonse->ID, 'website' , true ), array( 'http', 'https' ) );
 		$title = esc_attr( 'Besøk nettsiden til ' . $annonse->post_title );
-		echo PHP_EOL, '  <', $li, ' id="' . pp_ann_type() . '-' . $id . '" title="' . $cache . ' ' . $annonse->src . '">';
+		echo PHP_EOL, '  <', $li, ' id="', pp_ann_type(), '-', $id, $cache ? '" title="' . $cache . ' ' . $annonse->src : '', '">';
 		if ( $show_title )
 			echo PHP_EOL, '   <h2><a href="', $url, '" title="', $title, $cache ? ' (' . $cache . ' ' . $annonse->src . ')' : '', '" target="_blank">', esc_html( $annonse->post_title ), '</a></h2>';
 		if ( has_post_thumbnail( $annonse->ID ) ) {
@@ -213,7 +213,7 @@ function pp_pre_get_posts( $query ) {
 		elseif ( ( in_array( get_current_blog_id(), array( 4, 7 ) ) && ( $query->is_tax( pp_kom_tax() ) || $query->is_search() ) ) || $query->is_post_type_archive( pp_lev_type() ) )
 			$query->set( 'posts_per_page', 40 );
 		elseif ( 2 == get_current_blog_id() && $query->is_tag() )
-			$query->set ( 'post_type', pp_opp_type() );
+			$query->set ( 'post_type', array( 'post', pp_opp_type() ) );
 		elseif ( $query->is_tax( pp_pkat_tax() ) || $query->is_post_type_archive( pp_prd_type() ) )
 			$query->set( 'post_parent', 0 );
 	}
