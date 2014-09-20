@@ -65,19 +65,24 @@ get_header(); ?>
 					while ( $query->have_posts() ) {
 						$query->the_post();
 						$date = date( 'Y-m-d', strtotime( get_post_meta( $post->ID, 'startdato', true ) ) );
-						$aktiviteter[ $date . '-' . $post->ID ] = $post->ID;
+						$komm = get_the_terms( $post->ID, pp_kom_tax() );
+						$komm = is_array( $komm ) ? array_values( $komm )[0] : new stdObj;
+						$komm = $komm->term_group . '-' . $komm->slug;
+						$aktiviteter[ $date . '-' . $komm . '-' . $post->ID ] = $post->ID;
 						$dates = get_post_meta( $post->ID, '_date', false );
 						foreach ( $dates as $date ) {
-							$aktiviteter[ $date . '-' . $post->ID ] = $post->ID;
+							$aktiviteter[ $date . '-' . $komm . '-' . $post->ID ] = $post->ID;
 						}
 					}
 					ksort( $aktiviteter );
+//					echo '<pre>'; print_r( $aktiviteter ); echo '</pre>';
 					foreach ( $aktiviteter as $adate => $aktivitet_id ) {
 						$date = substr( $adate, 0, 10 );
+						$tminus = time() - DAY_IN_SECONDS + HOUR_IN_SECONDS;
 						if ( $ym )
-							$limit = $t <= mysql2date( 'U', $date ) && mysql2date( 'U', $date ) < date( 'U', strtotime( '+1 month', $t ) );
+							$limit = max( $t, $tminus ) <= mysql2date( 'U', $date ) && mysql2date( 'U', $date ) < date( 'U', strtotime( '+1 month', $t ) );
 						else
-							$limit = time() - DAY_IN_SECONDS + HOUR_In_SECONDS <= mysql2date( 'U', $date ) && mysql2date( 'U', $date ) <= time() + ( $weeks * WEEK_IN_SECONDS );
+							$limit = $tminus <= mysql2date( 'U', $date ) && mysql2date( 'U', $date ) <= time() + ( $weeks * WEEK_IN_SECONDS );
 						if ( $limit ) {
 							$post = get_post( $aktivitet_id );
 							setup_postdata( $post );
@@ -85,7 +90,6 @@ get_header(); ?>
 							get_template_part( 'content', pp_akt_type() );
 						}
 					}
-//					remove_filter( 'posts_orderby', 'pp_aktivitet_orderby' );
 ?>
 				</tbody>
 			</table>
