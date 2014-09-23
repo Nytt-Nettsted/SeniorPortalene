@@ -37,6 +37,7 @@ class PP_Portaler_Widget extends WP_Widget {
 			echo PHP_EOL, '			</a>';
 		}
 		echo PHP_EOL, '		</aside><!-- ', esc_attr( $this->id ), ' ', $src, ' -->';
+		echo PHP_EOL, '		<br style="clear: left;" />';
 		echo PHP_EOL, PHP_EOL;
 	}
 
