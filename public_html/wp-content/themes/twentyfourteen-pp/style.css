@@ -833,7 +833,18 @@ div#pp-relatedposts {
 	padding-top: 1em;
 	margin: 1em 0;
 	max-width: 474px;
-	padding-left: 114px
+	padding-left: 114px;
+}
+
+.bbpress div#pp-relatedposts {
+		padding-left: 32px;
+	}
+
+
+@media screen and ( max-width: 1184px ) {
+	div#pp-relatedposts {
+		padding-left: 0;
+	}
 }
 
 div.pp-relatedposts:after {
