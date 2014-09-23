@@ -270,6 +270,7 @@ Online-gudstjeneste     #999999
 .bbp_widget_login .bbp-logged-in h4 :after { content: ' (brukerprofil)'; font-size: xx-small; font-weight: normal; }
 #bbpress-forums .bbp-the-content-wrapper textarea.bbp-the-content,
 #bbpress-forums input#bbp_topic_title { border-color: rgba( 0, 0, 0, 0.4 ) }
+#bbpress-forums #new-post .bbp-form legend { font-size: larger; font-weight: bold; }
 
 @media screen and ( min-width: 768px ) {
 	.forum-titles li { word-break: break-all; padding: 0 1px; }
