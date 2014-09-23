@@ -1264,6 +1264,14 @@ function pp_switch_site_rewrite( $site_id ) {
 	}
 }
 
+function pp_widget_get_top_posts( $posts ) {
+	foreach ( $posts as $key => $post ) {
+		if ( strpos( $post['permalink'], 'regist' ) !== false )
+			unset ( $posts[ $key ] );
+	}
+	return $posts;
+}
+
 include( 'includes/featured-widget.php' );
 include( 'includes/portaler-widget.php' );
 include( 'includes/non-portaler-widget.php' );
@@ -1353,6 +1361,7 @@ if ( is_admin() ) {
 	add_filter( 'get_post_metadata', 'pp_get_post_metadata', 10, 3 );
 //	wp_enqueue_style( 'jetpack_related-posts', plugins_url( 'jetpack/modules/related-posts/related-posts.css') );
 	add_action( 'switch_blog', 'pp_switch_site_rewrite' );
+	add_filter( 'jetpack_widget_get_top_posts', 'pp_widget_get_top_posts' );
 	if ( WP_DEBUG )
 		add_filter( 'wp_default_styles', 'pp_default_styles' );
 //	if( wp_is_mobile() )
