@@ -84,3 +84,12 @@ function count_user_posts_by_type( $userid, $post_type = 'post' ) {
 	$count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->posts $where" );
   	return apply_filters( 'get_usernumposts', $count, $userid );
 }
+
+function shuffle_assoc( $array ) {
+	$shuffled_array = array();
+	$shuffled_keys  = array_keys( $array );
+	shuffle( $shuffled_keys );
+	foreach ( $shuffled_keys as $shuffled_key )
+		$shuffled_array[ $shuffled_key ] = $array[ $shuffled_key ];
+	return $shuffled_array;
+}
