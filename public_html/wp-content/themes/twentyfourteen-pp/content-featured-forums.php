@@ -5,7 +5,7 @@
  * @package Seniorportalene
  */
 $att_ids = pp_forum_thumbnails();
-$url = 2 == get_current_blog_id() ? '/forums/forum/diskusjonsforum-pa-seniorernaering/' : '/forums';
+$url = 2 == get_current_blog_id() ? '/forums/forum/diskusjonsforum-pa-seniorernaering/' : '/forums/forum/bpa-leverandorer-og-arbeidsledere/';
 ?>
 
 <article id="forums" <?php post_class( 'has-post-thumbnail' ); ?>>

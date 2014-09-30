@@ -562,13 +562,17 @@ function pp_login_redirect( $redirect_to, $request, $user ){
 	global $user;
 	// TODO: Sentraliser redirect-sider til config-array
 	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
-		if (     3 == get_current_blog_id() && in_array( 'subscriber', $user->roles ) )
+		if (     2 == get_current_blog_id() && in_array( 'subscriber', $user->roles ) )
+			return '/forums/forum/diskusjonsforum-pa-seniorernaering/';
+		elseif ( 3 == get_current_blog_id() && in_array( 'subscriber', $user->roles ) )
 			return get_page_link( 415 );
 		elseif ( 3 == get_current_blog_id() && ( in_array( 'contributor', $user->roles ) || in_array( 'utbygger', $user->roles ) ) )
 			return get_page_link( 430 );
 		elseif ( 5 == get_current_blog_id() && ( in_array( 'subscriber', $user->roles ) || in_array( 'contributor', $user->roles ) || in_array( 'aktivitor', $user->roles ) ) )
 			return get_page_link( 106 );
-		elseif ( 7 == get_current_blog_id() && ( in_array( 'subscriber', $user->roles ) || in_array( 'contributor', $user->roles ) || in_array( 'aktivitor', $user->roles ) ) )
+		elseif ( 7 == get_current_blog_id() && ( in_array( 'subscriber', $user->roles ) || in_array( 'contributor', $user->roles ) ) )
+			return '/forums/forum/bpa-leverandorer-og-arbeidsledere/';
+		elseif ( 7 == get_current_blog_id() && in_array( 'aktivitor', $user->roles ) )
 			return get_page_link( 1248 );
 		else
 			return $redirect_to;;
