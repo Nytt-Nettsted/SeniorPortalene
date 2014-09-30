@@ -9,10 +9,19 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php
-		// Page thumbnail and title.
-		twentyfourteen_post_thumbnail();
-		the_title( '<header class="entry-header"><h1 class="entry-title">', '</h1></header><!-- .entry-header -->' );
+	<?php twentyfourteen_post_thumbnail(); ?>
+	<header class="entry-header">
+		<?php if ( in_array( 'innhold', get_object_taxonomies( get_post_type() ) ) ) : ?>
+		<div class="entry-meta">
+			<span class="cat-links"><?php echo get_the_term_list( get_the_ID(), 'innhold', '', ', ' ); ?></span>
+		</div>
+		<?php
+		endif;
+		if ( is_single() ) :
+			the_title( '<h1 class="entry-title">', '</h1>' );
+		else :
+			the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' );
+		endif;
 	?>
 
 	<div class="entry-content">
