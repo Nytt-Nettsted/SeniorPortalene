@@ -29,7 +29,7 @@
 			$source = 'fresh';
 			$annonser = array();
 			for ( $apos = 0; $apos < $num_annonser; $apos++ ) {
-				$alev = 0; //Prøv med både kommune, posisjon or prioritet
+				$alev = 0; //Prøv først med både kommune, posisjon og prioritet
 				while( empty( $annonser[ $apos ] ) && $alev < count( $alev_terms ) ) {
 					$annonse = get_posts( array(
 						'posts_per_page' => 1,
@@ -198,7 +198,7 @@
 		if ( $annonser && is_array( $annonser ) && count( $annonser ) ) {
 			$source = 'transient';
 		} else {
-			$termsx = get_terms( $qobj->taxonomy, array( 'fields' => 'ids' ) );		// Kommune-termer som ikke skal være med når kommune ikke er med i kriteriene
+			$termsx = get_terms( pp_kom_tax(), array( 'fields' => 'ids' ) );		// Kommune-termer som ikke skal være med når kommune ikke er med i kriteriene
 			$source = 'fresh';
 			$annonser = array();
 			for ( $apos = 0; $apos < $num_annonser; $apos++ ) {
