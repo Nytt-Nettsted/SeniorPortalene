@@ -25,7 +25,7 @@ get_header(); ?>
 			<?php if ( have_posts() ) : ?>
 
 			<header class="archive-header">
-				<h1 class="page-title">Prosjekter i <?php single_cat_title(); ?></h1>
+				<h1 class="page-title">Boliger i <?php single_cat_title(); ?></h1>
 			</header><!-- .page-header -->
 			<?php
 					echo '<dl>';

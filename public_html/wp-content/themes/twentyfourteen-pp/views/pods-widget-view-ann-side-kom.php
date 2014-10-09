@@ -22,6 +22,7 @@
 //			intval( get_terms( pp_apos_tax(), array( 'parent' => $parent->term_id, 'fields' => 'count' ) ) )
 //		);
 		$transient = pp_ann_type() . '_' . pp_side_term() . '_' . pp_kom_tax() . '_' . $qobj->slug;
+		delete_transient( $transient );
 		$annonser = get_transient( $transient );
 		if ( $annonser && is_array( $annonser ) && count( $annonser ) ) {
 			$source = 'transient';
@@ -40,31 +41,15 @@
 							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => $alev_terms[ $alev ]   )
 						),
 						'meta_query' => $meta_query,
-						'exclude' => $idsx
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
 					) );
+//					echo $qobj->slug, ', ';
+//					print_r( $annonse); 
+//					if( $apos==0)echo count( $annonse ), ', ';
 //					if ( $apos+1 == 1 ) {echo 'mkom ', $apos+1, ' ', $alev, ' ', ($annonse[0]->ID ? $annonse[0]->ID : 0), ' '; print_r( $idsx ); echo '<br/>';}
 					if ( count( $annonse ) ) {
 //						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ] . ' ' . $qobj->name;
-						$annonser[ $apos ] = $annonse[0];
-						$idsx[] = intval( $annonse[0]->ID );
-					}
-					$alev++;	// Fra pri-1 til pri-3 via $alev_terms
-				}
-				$alev = 0;	// Prøv igjen uten å forlange kommune, men med posisjon og prioritet
-				while( empty( $annonser[ $apos ] ) && $alev < count( $alev_terms ) ) {
-					$annonse = get_posts( array(
-						'posts_per_page' => 1,
-						'post_type' => pp_ann_type(),
-						'tax_query' => array( 'relation' => 'AND',
-							array( 'taxonomy' => pp_apos_tax(),   'field' => 'slug', 'terms' => 'pos-' . ( $apos + 1 ) ),
-							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => $alev_terms[ $alev ]   )
-						),
-						'meta_query' => $meta_query,
-						'exclude' => array_unique( $idsx )
-					) );
-//					if ( $apos+1 == 1 ) {echo 'ukom ', $apos+1, ' ', $alev, ' ', ($annonse[0]->ID ? $annonse[0]->ID : 0), ' '; print_r( $idsx ); echo '<br/>';}
-					if ( count( $annonse ) ) {
-						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ];
 						$annonser[ $apos ] = $annonse[0];
 						$idsx[] = intval( $annonse[0]->ID );
 					}
@@ -80,11 +65,33 @@
 							array( 'taxonomy' => pp_apos_tax(),   'field' => 'slug', 'terms' => 'pos-' . ( $apos + 1 ) )
 						),
 						'meta_query' => $meta_query,
-						'exclude' => $idsx
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
 					) );
 //					if ( $apos+1 == 1 ) {echo 'upopr ', $apos+1, ' ', $alev, ' ', ($annonse[0]->ID ? $annonse[0]->ID : 0), ' '; print_r( $idsx ); echo '<br/>';}
 					if ( count( $annonse ) ) {
 						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $qobj->name;
+						$annonser[ $apos ] = $annonse[0];
+						$idsx[] = intval( $annonse[0]->ID );
+					}
+					$alev++;	// Fra pri-1 til pri-3 via $alev_terms
+				}
+				$alev = 0;	// Prøv igjen uten å forlange kommune, men med posisjon og prioritet
+				while( empty( $annonser[ $apos ] ) && $alev < count( $alev_terms ) ) {
+					$annonse = get_posts( array(
+						'posts_per_page' => 1,
+						'post_type' => pp_ann_type(),
+						'tax_query' => array( 'relation' => 'AND',
+							array( 'taxonomy' => pp_apos_tax(),   'field' => 'slug', 'terms' => 'pos-' . ( $apos + 1 ) ),
+							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => $alev_terms[ $alev ]   )
+						),
+						'meta_query' => $meta_query,
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
+					) );
+//					if ( $apos+1 == 1 ) {echo 'ukom ', $apos+1, ' ', $alev, ' ', ($annonse[0]->ID ? $annonse[0]->ID : 0), ' '; print_r( $idsx ); echo '<br/>';}
+					if ( count( $annonse ) ) {
+						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ];
 						$annonser[ $apos ] = $annonse[0];
 						$idsx[] = intval( $annonse[0]->ID );
 					}
@@ -100,7 +107,8 @@
 							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => pp_side_term()         )
 						),
 						'meta_query' => $meta_query,
-						'exclude' => array_unique( $idsx )
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
 					) );
 					if ( count( $annonse ) ) {
 						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 );
@@ -120,7 +128,8 @@
 							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => $alev_terms[ $alev ] )
 						),
 						'meta_query' => $meta_query,
-						'exclude' => $idsx
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
 					) );
 //					if ( $apos+1 == 1 ) {echo 'upopr ', $apos+1, ' ', $alev, ' ', ($annonse[0]->ID ? $annonse[0]->ID : 0), ' '; print_r( $idsx ); echo '<br/>';}
 					if ( count( $annonse ) ) {
@@ -140,7 +149,8 @@
 							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => $alev_terms[ $alev ] )
 						),
 						'meta_query' => $meta_query,
-						'exclude' => $idsx
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
 					) );
 //					if ( $apos+1 == 1 ) {echo 'upopr ', $apos+1, ' ', $alev, ' ', ($annonse[0]->ID ? $annonse[0]->ID : 0), ' '; print_r( $idsx ); echo '<br/>';}
 					if ( count( $annonse ) ) {
@@ -160,7 +170,8 @@
 							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => pp_side_term() )
 						),
 						'meta_query' => $meta_query,
-						'exclude' => array_unique( $idsx )
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
 					) );
 //					if ( $apos+1 == 1 ) {echo 'upoupr ', $apos+1, ' ', $alev, ' ', ($annonse[0]->ID ? $annonse[0]->ID : 0), ' '; print_r( $idsx ); echo '<br/>';}
 					if ( count( $annonse ) ) {
@@ -179,7 +190,8 @@
 							array( 'taxonomy' => pp_apos_tax(), 'field' => 'slug', 'terms' => pp_side_term() )
 						),
 						'meta_query' => $meta_query,
-						'exclude' => array_unique( $idsx )
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
 					) );
 					if ( count( $annonse ) ) {
 						$annonse[0]->src = $annonse[0]->ID . ' ' . pp_side_term();
@@ -213,7 +225,8 @@
 							array( 'taxonomy' => pp_alev_tax(), 'field' => 'slug', 'terms' => $alev_terms[ $alev ]   )
 						),
 						'meta_query' => $meta_query,
-						'exclude' => array_unique( $idsx )
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
 					) );
 					if ( count( $annonse ) ) {
 						$annonse[0]->src = 'pos-' . ( $apos + 1 );
@@ -233,7 +246,8 @@
 							array( 'taxonomy' => pp_alev_tax(), 'field' => 'slug', 'terms' => $alev_terms[ $alev ]   )
 						),
 						'meta_query' => $meta_query,
-						'exclude' => array_unique( $idsx )
+						'exclude' => array_unique( $idsx ),
+						'orderby' => 'rand'
 					) );
 					if ( count( $annonse ) ) {
 						$annonse[0]->src = 'pos-' . ( $apos + 1 );

@@ -336,6 +336,7 @@ input#post.submit
 .site-3 .content-area .prosjekt-desc { float: left; max-width: 49%; padding: 1em 0 1em 3%; }
 .site-3 .content-area .prosjekt-desc .entry-title { font-size: 18px; }
 .site-3 .pods_widget_view .group-0 { float: left; padding-right: 3em; margin-bottom: 20px; }
+.tax-prosjektkommune.site-3 .paging-navigation { display: none; }
 
 /* Frittbrukervalgportalen body.site-4 */
 
