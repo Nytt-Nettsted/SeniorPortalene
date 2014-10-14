@@ -36,7 +36,7 @@ body { padding-right: 243px; }	/* Sentrering forskyves litt til venstre. Oppheve
 /*.site-1 #site-header { float: left; } Fjernet av Knut og lagt i HTML i header.php */
 .search-toggle:before, .search-toggle { color: #000; font-size: 25px; }
 .site-title { font-size: 150%; }
-
+.widget-area .widget input { color: #000000; border: 1px solid rgba(0,0,0,0.2); }
 @media screen and ( max-width: 420px ) {
 	.site-title { font-size: 133.3%; }
 }

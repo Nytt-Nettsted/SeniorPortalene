@@ -59,7 +59,7 @@ function pp_credits() {
 	}
 	$version  = floatval  ( $theme->get( 'Version'   ) );
 	$url      = esc_url   ( $theme->get( 'AuthorURI' ) );
-	echo PHP_EOL, '<p class="alignright">Portalene AS, Strykerveien 10, 1658 Torp, tlf  94 15 23 00 &nbsp; | &nbsp; ';
+	echo PHP_EOL, '<p class="alignright">Portalene AS, Strykerveien 9 B, 1658 Torp, tlf  94 15 23 00 &nbsp; | &nbsp; ';
 	if ( in_array( get_current_blog_id(), array( 1, 5, 7 ) ) || 'page' != get_option( 'show_on_front' ) )
 		echo '<span title="', $theme, ' versjon ', $version, '">Utviklet</span> av <a href="', $url, '" title="', $authors, '">', $dev, '</a> ', $year, '.';
 	echo PHP_EOL, ' &nbsp; | &nbsp; <span title="Opphavsrett etter norsk lov">&copy;</span> <a href="', $site->siteurl, '/om/" title="', get_blog_option( BLOG_ID_CURRENT_SITE, 'blogdescription' ), '">', get_blog_option( 10, 'blogname' ), '</a> ', $year != intval( date( 'Y' ) ) ?  $year . '-' . date( 'Y' ) : $year, '</p>';
