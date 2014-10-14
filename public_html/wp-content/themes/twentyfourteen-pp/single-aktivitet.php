@@ -105,6 +105,7 @@ get_header();
 					$title = $field[ 'label'];
 					$title = $title ? ' title="' . $title . '"' : '';
 					$hver = $pod->field( 'interval', true );
+					$hver = substr( $pod->field( 'gjenta', true ), 0, 1 );
 					$hver = 1 >= intval( $hver ) ? '' : $hver . '. ';
 					$ukedager = $pod->field( 'ukedager' );
 					$ukedager = is_array( $ukedager ) ? $ukedager : array( $ukedager );
