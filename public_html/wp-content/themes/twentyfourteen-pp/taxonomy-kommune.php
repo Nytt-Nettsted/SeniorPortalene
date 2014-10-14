@@ -9,6 +9,8 @@ if ( in_array( get_current_blog_id(), array( 4, 7 ) ) ) {
 	$quo  = get_queried_object();
 	$pto  = get_post_type_object( pp_lev_type() );
 	$ptn  = $pto->labels->name . ' i ';
+	if ( 4 == get_current_blog_id() )
+		$ptn = 'Tjenestegodkjente ' . strtolower( $ptn );
 	if ( ( 4 == get_current_blog_id() && 8 == $quo->parent ) || ( 7 == get_current_blog_id() && 12 == $quo->parent ) )
 		$kom = ', Oslo ' . pp_kom_tax();
 	else
