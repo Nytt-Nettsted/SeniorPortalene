@@ -60,6 +60,7 @@ body { padding-right: 243px; }	/* Sentrering forskyves litt til venstre. Oppheve
 .site-10 #primary-sidebar .widget-title { display: block; }
 
 .tag-fremhevet .entry-meta { display: none; } /* Styler bort dato og forfatter på "fremhevet" innlegg som brukes i slider */
+.widget-area .tag-fremhevet .entry-meta { display: block; }
 .featured-content .tag-fremhevet .entry-meta { display: block; } /* Styler inn kategori her */
 
 @media screen and ( min-width: 783px ) {
