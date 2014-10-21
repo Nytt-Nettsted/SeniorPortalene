@@ -11,7 +11,7 @@ add_filter( 'get_terms', 'pp_get_fylker', 10, 2 );
 $number = 10;
 $col = 0;
 do {
-	echo PHP_EOL, '<div style="float: left; padding-right: 1em;">';
+	echo PHP_EOL, '<div style="float: left; padding-right: 1em; margin-bottom: 1em;">';
 	$fylker = get_terms( pp_kom_tax(), array( 'parent' => 0, 'hide_empty' => false, 'number' => $number, 'offset' => $col * $number ) );
 	foreach ( $fylker as $fylke ) {
 		echo PHP_EOL, '<div class="fylke">';

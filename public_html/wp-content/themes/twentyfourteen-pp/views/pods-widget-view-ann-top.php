@@ -3,6 +3,8 @@
 	Av: Knut Sparhell og Ingebjørg Thoresen
 */
 	$qobj   = get_queried_object();
+	$parent = get_term_by( 'id', get_term_by( 'id', $qobj->term_id, $qobj->taxonomy )->parent, $qobj->taxonomy )->slug;
+	$qterms = array( $parent, $qobj->slug );
 	$idsx = array();	// Annonser allerede vist, skal ekskluderes
 //	$parent = get_term_by( 'slug', pp_head_term(), pp_apos_tax() );
 //	$apos_terms = array( 'smal', 'bred' );
@@ -34,7 +36,7 @@
 						'posts_per_page' => 1,
 						'post_type' => pp_ann_type(),
 						'tax_query' => array( 'relation' => 'AND',
-							array( 'taxonomy' => $qobj->taxonomy, 'field' => 'slug', 'terms' => $qobj->slug          ),
+							array( 'taxonomy' => $qobj->taxonomy, 'field' => 'slug', 'terms' => $qterms              ),
 							array( 'taxonomy' => pp_apos_tax(),   'field' => 'slug', 'terms' => $apos_terms[ $apos ] ),
 							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => $alev_terms[ $alev ] )
 						),
@@ -42,10 +44,11 @@
 						'exclude' => array_unique( $idsx ),
 						'orderby' => 'rand'
 					) );
-//					if ( $apos+1 == 1 ) {echo 'mkom ', $apos+1, ' ', $alev, ' ', ($annonse[0]->ID ? $annonse[0]->ID : 0), ' '; print_r( $idsx ); echo '<br/>';}
+//					if ( $apos+1 == 1 ) { echo 'mkom ', $apos+1, ' ', $alev, ' ', $annonse[0]->ID ? $annonse[0]->ID : 0, ' '; print_r( $idsx ); echo '<br/>';}
+//					if ( $apos+1 == 1 ) { echo ' x '. $parent; echo '<br/>';}
 					if ( count( $annonse ) ) {
-//						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ] . ' ' . $qobj->name;
-						$annonser[ $apos ] = $annonse[0];
+						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ] . ' ' . $qobj->name;
+						$annonser[ $apos_terms[ $apos ] ] = $annonse[0];
 						$idsx[] = intval( $annonse[0]->ID );
 					}
 					$alev++;	// Fra pri-1 til pri-3 via $alev_terms
@@ -64,7 +67,7 @@
 						'orderby' => 'rand'
 					) );
 					if ( count( $annonse ) ) {
-	//					$annonse[0]->src = $annonse[0]->ID . ' pos-' . $apos_terms[ $apos ] . '-' . $alev_terms[ $alev ];
+						$annonse[0]->src = $annonse[0]->ID . ' pos-' . $apos_terms[ $apos ] . '-' . $alev_terms[ $alev ];
 						$annonser[ $apos_terms[ $apos ] ] = $annonse[0];
 						$idsx[] = intval( $annonse[0]->ID );
 					}
@@ -85,7 +88,7 @@
 					) );
 					if ( count( $annonse ) ) {
 						$annonse[0]->src = $annonse[0]->ID . ' pos-' . pp_head_term() . '-' . $alev_terms[ $alev ];
-						$annonser[ $apos_terms[1] ] = $annonse[0];
+						$annonser[ $apos_terms[0] ] = $annonse[0];
 						$idsx[] = intval( $annonse[0]->ID );
 					}
 					$alev++;	// Fra pri-1 til pri-3 via $alev_terms
@@ -134,7 +137,7 @@
 						) );
 					}
 					if ( count( $annonse ) ) {
-	//					$annonse[0]->src = $annonse[0]->ID . ' pos-' . $apos_terms[ $apos ] . '-' . $alev_terms[ $alev ];
+						$annonse[0]->src = $annonse[0]->ID . ' pos-' . $apos_terms[ $apos ] . '-' . $alev_terms[ $alev ];
 						$annonser[ $apos_terms[ $apos ] ] = $annonse[0];
 						$idsx[] = intval( $annonse[0]->ID );
 					}

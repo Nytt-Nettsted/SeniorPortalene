@@ -1,5 +1,5 @@
 <?php
-/*	Annonser for FrittbrukervalgPortalen m.fl
+/*	Annonser for SeniorErnæring m.fl
 	Av: Knut Sparhell og Ingebjørg Thoresen
 */
 	$qobj   = get_queried_object();
@@ -16,8 +16,8 @@
 		array( 'key' => 'annonsesluttdato', 'compare' => '>=', 'value' => current_time( 'mysql' ), 'type' => 'DATETIME' )
 		);
 	echo PHP_EOL, ' <ul class="', pp_ann_type(), '">';
-	if ( $qobj && $qobj->taxonomy && $qobj->taxonomy == pp_kom_tax() ) {
-		$transient = pp_ann_type() . '_' . pp_side_term() . '_' . pp_kom_tax() . '_' . $qobj->slug;
+	if ( $qobj && $qobj->taxonomy && $qobj->taxonomy == 'category' ) {
+		$transient = pp_ann_type() . '_' . pp_side_term() . '_category_' . $qobj->slug;
 //		delete_transient( $transient );
 		$annonser = get_transient( $transient );
 		if ( $annonser && is_array( $annonser ) && count( $annonser ) ) {
@@ -58,7 +58,7 @@
 						'posts_per_page' => 1,
 						'post_type' => pp_ann_type(),
 						'tax_query' => array( 'relation' => 'AND',
-							array( 'taxonomy' => $qobj->taxonomy, 'field' => 'slug', 'terms' => $terms                 ),
+							array( 'taxonomy' => $qobj->taxonomy, 'field' => 'slug', 'terms' => $qobj->slug            ),
 							array( 'taxonomy' => pp_apos_tax(),   'field' => 'slug', 'terms' => 'pos-' . ( $apos + 1 ) )
 						),
 						'meta_query' => $meta_query,
@@ -201,7 +201,7 @@
 		if ( $annonser && is_array( $annonser ) && count( $annonser ) ) {
 			$source = 'transient';
 		} else {
-			$termsx = get_terms( pp_kom_tax(), array( 'fields' => 'ids' ) );		// Kommune-termer som ikke skal være med når kommune ikke er med i kriteriene
+			$termsx = get_terms( 'category', array( 'fields' => 'ids' ) );		// Kategori-termer som ikke skal være med når kategori ikke er med i kriteriene
 			$source = 'fresh';
 			$annonser = array();
 			for ( $apos = 0; $apos < $num_annonser; $apos++ ) {
@@ -211,7 +211,7 @@
 						'posts_per_page' => 1,
 						'post_type' => pp_ann_type(),
 						'tax_query' => array( 'relation' => 'AND',
-							array( 'taxonomy' => pp_kom_tax(),  'field' => 'id',   'terms' => $termsx, 'operator' => 'NOT IN', 'include_children' => false ),
+							array( 'taxonomy' => 'category', 'field' => 'id',   'terms' => $termsx, 'operator' => 'NOT IN', 'include_children' => false ),
 							array( 'taxonomy' => pp_apos_tax(), 'field' => 'slug', 'terms' => 'pos-' . ( $apos + 1 ) ),
 							array( 'taxonomy' => pp_alev_tax(), 'field' => 'slug', 'terms' => $alev_terms[ $alev ]   )
 						),
@@ -231,7 +231,7 @@
 						'posts_per_page' => 1,
 						'post_type' => pp_ann_type(),
 						'tax_query' => array( 'relation' => 'AND',
-							array( 'taxonomy' => pp_kom_tax(),  'field' => 'id',   'terms' => $termsx, 'operator' => 'NOT IN', 'include_children' => false ),
+							array( 'taxonomy' => 'category', 'field' => 'id',   'terms' => $termsx, 'operator' => 'NOT IN', 'include_children' => false ),
 							array( 'taxonomy' => pp_apos_tax(), 'field' => 'slug', 'terms' => pp_side_term() ),
 							array( 'taxonomy' => pp_alev_tax(), 'field' => 'slug', 'terms' => $alev_terms[ $alev ]   )
 						),

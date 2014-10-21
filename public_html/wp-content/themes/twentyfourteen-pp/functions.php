@@ -21,7 +21,7 @@ if ( WP_DEBUG ) {
 }
 define( 'PP_DOMAIN_SITE', 10 );
 define( 'PP_UKEMENY_ADJUST', '+1 days' );						// For PHP strtotime(), dager meny kan publiseres før ukestart, autogenererering av post_title (og post_name). Ukemeny kan f.eks publiseres på søndag med '+1 day'. Ellers brukes Planlegg-funksjonen.
-define( 'PP_NUM_HEAD_ANN', 2 );									// Antall annonser i topp
+define( 'PP_NUM_HEAD_ANN', 1 );									// Antall annonser i topp
 define( 'PP_KOM_DELIM', '|' );
 
 function pp_featured_content_pos() {							// Hvilke nettsteder (sites) som skal ha fremhevet innhold hvor (top/sidebar). Brukes av index.php og featured-content.php
