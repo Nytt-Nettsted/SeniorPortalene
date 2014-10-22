@@ -31,7 +31,7 @@
 			$annonser = array();
 			for ( $apos = 0; $apos < count( $apos_terms ); $apos++ ) {
 				$alev = 0; //Prøv først med både kommune, posisjon og prioritet
-				while( empty( $annonser[ $apos ] ) && $alev < count( $alev_terms ) ) {
+				while( empty( $annonser[ $apos_terms[ $apos ] ] ) && $alev < count( $alev_terms ) ) {
 					$annonse = get_posts( array(
 						'posts_per_page' => 1,
 						'post_type' => pp_ann_type(),
@@ -45,7 +45,7 @@
 						'orderby' => 'rand'
 					) );
 //					if ( $apos+1 == 1 ) { echo 'mkom ', $apos+1, ' ', $alev, ' ', $annonse[0]->ID ? $annonse[0]->ID : 0, ' '; print_r( $idsx ); echo '<br/>';}
-//					if ( $apos+1 == 1 ) { echo ' x '. $parent; echo '<br/>';}
+//					if ( $apos+1 == 1 ) { print_r( $qterms ); echo '<br/>';}
 					if ( count( $annonse ) ) {
 						$annonse[0]->src = $annonse[0]->ID . ' pos-' . ( $apos + 1 ) . ' ' . $alev_terms[ $alev ] . ' ' . $qobj->name;
 						$annonser[ $apos_terms[ $apos ] ] = $annonse[0];
@@ -88,7 +88,7 @@
 					) );
 					if ( count( $annonse ) ) {
 						$annonse[0]->src = $annonse[0]->ID . ' pos-' . pp_head_term() . '-' . $alev_terms[ $alev ];
-						$annonser[ $apos_terms[0] ] = $annonse[0];
+						$annonser[ $apos_terms[ $apos ] ] = $annonse[0];
 						$idsx[] = intval( $annonse[0]->ID );
 					}
 					$alev++;	// Fra pri-1 til pri-3 via $alev_terms
