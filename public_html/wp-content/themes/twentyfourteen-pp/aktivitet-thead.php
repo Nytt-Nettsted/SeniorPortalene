@@ -12,9 +12,9 @@
 						<th class="tid-col" scope="col">Tid</th>
 						<th class="aktivitetstype-col" scope="col">Aktivitet</th>
 <?php
-if ( ! is_tax( pp_kom_tax() ) ) {
+if ( ! is_tax( pp_kom_tax() ) || 7 != get_current_blog_id() ) {
 ?>
-						<th class="fylke-col" scope="col"><?php echo 7 == get_current_blog_id() ? 'Fylke' : 'Fylke/Land'; ?></th>
+						<th class="fylke-col" scope="col"><?php echo 7 == get_current_blog_id() ? 'Fylke' : 'Kommune'; ?></th>
 <?php
 }
 ?>

@@ -14,7 +14,7 @@ $slutt = $slutt ? '-' . $slutt : $slutt;
 			<td class="tid-col"><?php echo $pod->display( 'starttid' ), $slutt; ?></td>
 			<td class="aktivitetstype-col"><?php echo get_the_term_list( get_the_ID(), 'aktivitetstype', '', ', ', '' ); ?></td>
 <?php
-if ( ! is_tax( pp_kom_tax() ) ) {
+if ( ! is_tax( pp_kom_tax()  ) || 7 != get_current_blog_id() ) {
 ?>
 			<td class="<?php echo pp_kom_tax(); ?>-col"><?php echo get_the_term_list( get_the_ID(), pp_kom_tax(), '', ', ', '' ); ?></td>
 <?php
