@@ -221,6 +221,8 @@ ul.wpuf-form li .wpuf-fields { width: 70%; }
 .jetpack_subscription_widget p:nth-child(3):not(#subscribe-submit),
 .jetpack_subscription_widget form:nth-child(4) { display: none; }
 
+.widget_sp_image-description { font-weight: bold; }
+
 /* Site specific things
 						Hovedfarge		Lenkefarge		Aktivfarge
 PensjonistPortalen      #3366FF
