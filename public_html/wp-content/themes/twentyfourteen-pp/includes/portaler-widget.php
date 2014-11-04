@@ -8,7 +8,7 @@ class PP_Portaler_Widget extends WP_Widget {
 		$src = '';
 		$sites = pp_sites( $src );
 		$text = 'våre portaler';
-		parent::__construct( 'pp-portaler-widget', 'Besøk ' . ( is_null( $sites[ get_current_blog_id() ] ) ?  $sites[1]->blogname : $text ), array( 'description' => 'Lenker til ' . $text ) );
+		parent::__construct( 'pp-portaler-widget', 'Besøk ' . ( isset( $sites[ get_current_blog_id() ] ) ? $text : $sites[1]->blogname ), array( 'description' => 'Lenker til ' . $text ) );
 	}
 
 	/**

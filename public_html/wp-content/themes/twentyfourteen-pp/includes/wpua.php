@@ -1,5 +1,6 @@
 <?php
-define( 'WPUA_URL', plugin_dir_url( WP_PLUGIN_DIR . '/wp-user-avatar/wp-user-avatar.php' ) );
+if ( ! defined( 'WPUA_URL' ) )
+	define( 'WPUA_URL', plugin_dir_url( WP_PLUGIN_DIR . '/wp-user-avatar/wp-user-avatar.php' ) );
 
 global $avatar_default,
        $show_avatars,

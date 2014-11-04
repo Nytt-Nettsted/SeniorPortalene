@@ -303,8 +303,7 @@ function pp_contactmethods( $contactmethods ) {
 //		$contactmethods[ $wpdb->prefix . 'funksjon' ] = 'Funksjon <span class="description" title="La stå tomt for brukere som ikke skal vises under &laquo;medarbeidere&raquo;">(innledende spesialtegn angir fremhevet ansatt, f.eks <code>+Teamleder</code>)</span>';
 		$contactmethods[ 'pp_funksjon' ] = 'Funksjon <span class="description" title="La stå tomt for brukere som ikke skal vises under &laquo;medarbeidere&raquo;">(innledende spesialtegn angir fremhevet ansatt, f.eks <code>+Teamleder</code>)</span>';
 	}
-	if ( 5 != get_current_blog_id() )
-		$contactmethods[ pp_tel_meta() ] = 'Telefon';
+	$contactmethods[ pp_tel_meta() ] = 'Telefon';
 	if ( 3 == get_current_blog_id() ) {
 		if ( user_can( $userid, 'utbygger' ) )
 			$contactmethods['pp_firma']   = 'Firma <span class="description">(for utbygger)</span>';
@@ -533,30 +532,21 @@ function pp_admin_menu() {
 
 }
 
-function pp_add_user_to_registering_blog( $user_id ) {
-	$blog_id = get_current_blog_id();
-	if ( ! is_user_member_of_blog( $user_id, $blog_id ) )
+function pp_user_register( $user_id ) {
+	if ( ! is_user_member_of_blog( $user_id, get_current_blog_id() ) )
 		add_user_to_blog( $blog_id, $user_id, get_option( 'default_role' ) );
+	pp_sanitize_user_names();
+//	update_user_meta( $user_id, 'closedpostboxes_dashboard', array( 'dashboard_quick_press', 'dashboard_serverinfo' ) );
 }
 
-function pp_register_extra_fields( $user_id, $password, $meta ) {
-	$userdata = array();
-	$userdata['ID'] = $user_id;
-	$userdata['first_name'] = ucwords( strtolower( esc_attr( trim( $_POST['first'] ) ) ) );
-	$userdata['last_name']  = ucwords( strtolower( esc_attr( trim( $_POST['last' ] ) ) ) );
-	$userdata['display_name'] = $userdata['first_name'] . ' ' . $userdata['last_name'];
-	wp_update_user( $userdata );
-//	update_user_meta( $user_id, 'closedpostboxes_dashboard', array('dashboard_quick_press','dashboard_serverinfo') );
-}
-
-function pp_update_user_fields( $user_id ) {
-	if ( current_user_can( 'edit_user', $user_id ) ) {
-		$user = get_userdata( $user_id );
-		if ( $user->user_login == get_user_meta( $user_id, 'nickname', true ) && ( $user->display_name == trim( $_POST['display_name'] ) || empty( $user->display_name ) ) ) {
-			$_POST['display_name'] = ucfirst( trim( $_POST['first_name' ] ) ) . ' ' . ucfirst( trim( $_POST['last_name' ] ) );
-		}
-	}
-}
+//function pp_update_user_fields( $user_id ) {
+//	if ( current_user_can( 'edit_user', $user_id ) ) {
+//		$user = get_userdata( $user_id );
+//		if ( $user->user_login == get_user_meta( $user_id, 'nickname', true ) && ( $user->display_name == trim( $_POST['display_name'] ) || empty( $user->display_name ) ) ) {
+//			$_POST['display_name'] = ucfirst( trim( $_POST['first_name' ] ) ) . ' ' . ucfirst( trim( $_POST['last_name' ] ) );
+//		}
+//	}
+//}
 
 function pp_login_redirect( $redirect_to, $request, $user ){
 	global $user;
@@ -1230,13 +1220,20 @@ function pp_user_column_orderby( $query ) {
 	return $vars;
 }
 
-function pp_user_register( $user_id, $password, $meta ) {
-	$userdata = array();
-	$userdata['ID'] = $user_id;
-	$userdata['first_name'] = ucwords( strtolower( trim( esc_attr( $_POST['first'] ) ) ) );
-	$userdata['last_name']  = ucwords( strtolower( trim( esc_attr( $_POST['last' ] ) ) ) );
-	$userdata['display_name'] = $userdata['first_name'] . ' ' . $userdata['last_name'];
-	wp_update_user( $userdata );
+function pp_sanitize_first_name() {
+	return ucwords( strtolower( trim( esc_attr( $_POST['first_name'] ) ) ) );
+}
+function pp_sanitize_last_name() {
+	return ucwords( strtolower( trim( esc_attr( $_POST[ 'last_name'] ) ) ) );
+}
+function pp_sanitize_display_name() {
+	return pp_sanitize_first_name() . ' ' . pp_sanitize_last_name();
+}
+
+function pp_sanitize_user_names() {
+	foreach ( array( 'first_name', 'last_name', 'display_name') as $name ) {
+		add_filter( 'pre_user_' . $name, 'pp_sanitize_' . $name );
+	}
 }
 
 function pp_add_custom_post_types_to_activity_widget( $query ) {
@@ -1253,8 +1250,8 @@ function pp_get_post_metadata( $nul, $object_id, $meta_key ) {
 
 function pp_switch_site_rewrite( $site_id ) {
 	global $post;
-	if ( $post->blog_id && $post->blog_id != $site_id ) {
-		if (     2 == $site_id ) {
+	if ( is_object( $post ) && $post->blog_id && $post->blog_id != $site_id ) {
+		if (       2 == $site_id ) {
 			register_post_type( pp_opp_type(), array( 'rewrite' => true ) );
 		} elseif ( 3 == $site_id ) {
 			register_post_type( pp_pro_type(), array( 'rewrite' => array( 'slug' => 'bolig' ) ) );
@@ -1270,11 +1267,17 @@ function pp_switch_site_rewrite( $site_id ) {
 
 function pp_widget_get_top_posts( $posts ) {
 	foreach ( $posts as $key => $post ) {
-		if ( strpos( $post['permalink'], 'regist' ) !== false )
+		if ( strpos( $post['permalink'], 'regist' ) !== false || $post['post_id'] == get_option( 'page_on_front' ) )
 			unset ( $posts[ $key ] );
 	}
 	return $posts;
 }
+
+function pp_add_user() {
+	if ( is_user_logged_in() && ! is_user_member_of_blog() )
+		add_user_to_blog( get_current_blog_id(), get_current_user_id(), get_option( 'default_role' ) );
+}
+
 
 include( 'includes/featured-widget.php' );
 include( 'includes/portaler-widget.php' );
@@ -1300,8 +1303,8 @@ if ( is_admin() ) {
 	add_action( 'in_admin_header', 'pp_archive_link' );
 	add_action( 'wp_dashboard_setup', 'pp_dashboard_setup' );
 	add_action( 'do_meta_boxes', 'pp_meta_boxes' );
-	add_action( 'edit_user_profile_update', 'pp_update_user_fields' );
-	add_action( 'personal_options_update' , 'pp_update_user_fields' );
+//	add_action( 'edit_user_profile_update', 'pp_update_user_fields' );
+//	add_action( 'personal_options_update' , 'pp_update_user_fields' );
 	add_action( 'load-post-new.php', 'pp_change_comment_status' );
 	add_action( 'load-edit.php', 'pp_force_excerpt' );
 	add_action( 'wp_dashboard_setup', 'pp_remove_dashboard_widgets' );
@@ -1363,9 +1366,9 @@ if ( is_admin() ) {
 	add_filter( 'the_title', 'pp_title', 10, 2 );
 	add_filter( 'jetpack_open_graph_output', 'pp_jetpack_open_graph_output' );
 	add_filter( 'get_post_metadata', 'pp_get_post_metadata', 10, 3 );
+	add_filter( 'jetpack_widget_get_top_posts', 'pp_widget_get_top_posts' );
 //	wp_enqueue_style( 'jetpack_related-posts', plugins_url( 'jetpack/modules/related-posts/related-posts.css') );
 	add_action( 'switch_blog', 'pp_switch_site_rewrite' );
-	add_filter( 'jetpack_widget_get_top_posts', 'pp_widget_get_top_posts' );
 	if ( WP_DEBUG )
 		add_filter( 'wp_default_styles', 'pp_default_styles' );
 //	if( wp_is_mobile() )
@@ -1381,7 +1384,7 @@ add_action( 'widgets_init', function() { register_widget( 'PP_Non_Portaler_Widge
 add_action( 'widgets_init', function() { register_widget( 'PP_Featured_Widget' ); } );
 //add_action( 'widgets_init', function() { register_widget( 'PP_Inspirasjon_Widget' ); } );
 add_action( 'widgets_init', function() { register_widget( 'PP_After_Content_Widget' ); } );
-add_action( 'bp_core_activated_user', 'pp_add_user_to_registering_blog' );
+add_action( 'user_register', 'pp_user_register' );
 add_filter( 'update_welcome_user_email', 'pp_change_welcome_mail_loginlink', 10, 4 );
 add_filter( 'wp_mail_from', 'pp_mail_from' );
 add_filter( 'wp_mail_from_name', 'pp_mail_from_name' );
@@ -1389,11 +1392,12 @@ add_filter( 'random_password', 'pp_shorter_pass' );
 add_action( 'login_enqueue_scripts', 'pp_login_logo' );
 add_filter( 'edit_profile_url', 'pp_edit_profile_url' );
 add_action( 'registered_taxonomy', 'pp_registered_taxonomy', 20, 1 );
-add_action( 'user_register','pp_register_extra_fields', 99 );
+//add_action( 'user_register','pp_register_extra_fields', 99 );
 add_filter( 'login_redirect', 'pp_login_redirect', 10, 3);
 add_action( 'wp_logout', 'pp_logout_redirect' );
 add_action( 'save_post_' . pp_akt_type(), 'pp_save_aktivitet', 20, 3 );
-add_action( 'user_register','pp_user_register', 10, 3 );
+add_action( 'wpmu_activate_user', 'pp_sanitize_user_names' );
+add_action( 'wp', 'pp_add_user' );
 
 include( 'includes/user-capabilities.php' );
 include( 'includes/wpua.php' );	// User avatar extras

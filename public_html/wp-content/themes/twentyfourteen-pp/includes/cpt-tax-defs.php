@@ -44,6 +44,10 @@ function pp_side_term() {
 	return 'sidestolpe';
 }
 
+function pp_innh_tax() {
+	return 'innhold';
+}
+
 function pp_aktt_tax() {
 	return 'aktivitetstype';
 }

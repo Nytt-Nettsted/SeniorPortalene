@@ -41,19 +41,18 @@ function pp_wpuf_update_kommune( $user_id, $userdata, $form_id, $form_settings )
 			$kommuner = array( $_POST['kommune'] );
 			update_user_meta( $user_id, pp_pro_kom_meta(), esc_attr( $_POST['kommune'] ) );
 		}
-    }
-	$fylker = array();
-	foreach ( $kommuner as $kommune ) {
-		$kom = get_term_by( 'name', esc_attr( $kommune ), pp_kom_tax() );
-		if ( $kom ) {
-			$fylke = get_term_by( 'id', $kom->parent, pp_kom_tax() );
-			if ( $fylke )
-				$fylker[] = $fylke->name;
+		$fylker = array();
+		foreach ( $kommuner as $kommune ) {
+			$kom = get_term_by( 'name', esc_attr( $kommune ), pp_kom_tax() );
+			if ( $kom ) {
+				$fylke = get_term_by( 'id', $kom->parent, pp_kom_tax() );
+				if ( $fylke )
+					$fylker[] = $fylke->name;
+			}
 		}
-	}
-	if ( count( $fylker ) )
-		update_user_meta( $user_id, pp_pro_fyl_meta(), implode( PP_KOM_DELIM, array_unique( $fylker ) ) );
-
+		if ( count( $fylker ) )
+			update_user_meta( $user_id, pp_pro_fyl_meta(), implode( PP_KOM_DELIM, array_unique( $fylker ) ) );
+    }
 }
 
 function pp_uf_add_aktivitet( $post_id ) {
