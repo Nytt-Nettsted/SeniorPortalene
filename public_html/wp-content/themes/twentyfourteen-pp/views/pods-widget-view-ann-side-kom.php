@@ -25,6 +25,7 @@
 			$source = 'transient';
 		} else {
 			$source = 'fresh';
+			$termsx = get_terms( pp_kom_tax(), array( 'fields' => 'ids' ) );		// Kommune-termer som ikke skal være med når kommune ikke er med i kriteriene
 			$parent = get_term_by( 'id', get_term_by( 'slug', $qobj->slug, $qobj->taxonomy )->parent, $qobj->taxonomy );
 			$annonser = array();
 			for ( $apos = 0; $apos < $num_annonser; $apos++ ) {
@@ -120,6 +121,7 @@
 						'posts_per_page' => 1,
 						'post_type' => pp_ann_type(),
 						'tax_query' => array( 'relation' => 'AND',
+							array( 'taxonomy' => pp_kom_tax(),  'field' => 'id',   'terms' => $termsx, 'operator' => 'NOT IN', 'include_children' => false ),
 							array( 'taxonomy' => pp_apos_tax(),   'field' => 'slug', 'terms' => 'pos-' . ( $apos + 1 ) ),
 							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => $alev_terms[ $alev ]   )
 						),
@@ -140,6 +142,7 @@
 						'posts_per_page' => 1,
 						'post_type' => pp_ann_type(),
 						'tax_query' => array( 'relation' => 'AND',
+							array( 'taxonomy' => pp_kom_tax(),  'field' => 'id',   'terms' => $termsx, 'operator' => 'NOT IN', 'include_children' => false ),
 							array( 'taxonomy' => pp_apos_tax(),   'field' => 'slug', 'terms' => 'pos-' . ( $apos + 1 ) ),
 							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => pp_side_term()         )
 						),
@@ -202,6 +205,7 @@
 						'posts_per_page' => 1,
 						'post_type' => pp_ann_type(),
 						'tax_query' => array( 'relation' => 'AND',
+							array( 'taxonomy' => pp_kom_tax(),  'field' => 'id',   'terms' => $termsx, 'operator' => 'NOT IN', 'include_children' => false ),
 							array( 'taxonomy' => pp_apos_tax(),   'field' => 'slug', 'terms' => pp_side_term()       ),
 							array( 'taxonomy' => pp_alev_tax(),   'field' => 'slug', 'terms' => $alev_terms[ $alev ] )
 						),
@@ -262,6 +266,7 @@
 						'posts_per_page' => 1,
 						'post_type' => pp_ann_type(),
 						'tax_query' => array(
+							array( 'taxonomy' => pp_kom_tax(),  'field' => 'id',   'terms' => $termsx, 'operator' => 'NOT IN', 'include_children' => false ),
 							array( 'taxonomy' => pp_apos_tax(), 'field' => 'slug', 'terms' => pp_side_term() )
 						),
 						'meta_query' => $meta_query,

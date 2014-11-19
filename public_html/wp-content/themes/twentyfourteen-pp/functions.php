@@ -378,11 +378,11 @@ function pp_the_category( $thelist ) {
 
 function pp_dfi_thumbnail_id( $thumbnail_id, $post_id ) {
 	if ( get_post_type( $post_id ) != pp_ann_type() ) {
-		if ( get_post_type( $post_id ) == pp_akt_type() ) {
-			$atts = get_children( array( 'post_parent' => get_option( 'page_on_front' ), 'post_type' => 'attachment', 'post_mime_type' => 'image' ) );
-			$ids = array_merge( array_keys( $atts ), array( $thumbnail_id ) );
-			return $ids[ $post_id % ( count( $ids ) + 1 ) ];
-		} else
+//		if ( get_post_type( $post_id ) == pp_akt_type() ) {
+//			$atts = get_children( array( 'post_parent' => get_option( 'page_on_front' ), 'post_type' => 'attachment', 'post_mime_type' => 'image' ) );
+//			$ids = array_merge( array_keys( $atts ), array( $thumbnail_id ) );
+//			return $ids[ $post_id % ( count( $ids ) + 1 ) ];
+//		} else
 			return $thumbnail_id;
 	} else
 		return false;

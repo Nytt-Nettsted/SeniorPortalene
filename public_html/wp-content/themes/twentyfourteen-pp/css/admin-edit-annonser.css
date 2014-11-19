@@ -7,5 +7,5 @@
 #pods-meta-more-fields .hndle:after { content: 'Øvrig annonseinformasjon'; }
 #kommune-adder, #annonseleverandor-adder, #annonseplass-adder { display: none; }
 .row-actions .view, #titlediv .inside, #message.updated a, #preview-action { display: none; }
-.column-title { width: 45%; }
+.column-title { width: 41%; }
 .column-annonsesluttdato { width: 10%; }
