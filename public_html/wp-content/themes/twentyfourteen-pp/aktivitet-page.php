@@ -66,7 +66,7 @@ get_header(); ?>
 						$query->the_post();
 						$date = date( 'Y-m-d', strtotime( get_post_meta( $post->ID, 'startdato', true ) ) );
 						$komm = get_the_terms( $post->ID, pp_kom_tax() );
-						$komm = is_array( $komm ) ? array_values( $komm )[0] : new stdObj;
+						$komm = is_array( $komm ) ? array_values( $komm )[0] : new stdClass;
 						$komm = $komm->term_group . '-' . $komm->slug;
 						$aktiviteter[ $date . '-' . $komm . '-' . $post->ID ] = $post->ID;
 						$dates = get_post_meta( $post->ID, '_date', false );
